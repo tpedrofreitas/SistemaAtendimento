@@ -58,31 +58,35 @@
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(71, 20);
             cadastrosToolStripMenuItem.Text = "Cadastros";
+            cadastrosToolStripMenuItem.Click += cadastrosToolStripMenuItem_Click;
             // 
             // clientesToolStripMenuItem
             // 
             clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            clientesToolStripMenuItem.Size = new Size(184, 22);
+            clientesToolStripMenuItem.Size = new Size(180, 22);
             clientesToolStripMenuItem.Text = "Clientes";
             clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // usuáriosToolStripMenuItem
             // 
             usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            usuáriosToolStripMenuItem.Size = new Size(184, 22);
+            usuáriosToolStripMenuItem.Size = new Size(180, 22);
             usuáriosToolStripMenuItem.Text = "Usuários";
+            usuáriosToolStripMenuItem.Click += usuáriosToolStripMenuItem_Click;
             // 
             // etapasToolStripMenuItem
             // 
             etapasToolStripMenuItem.Name = "etapasToolStripMenuItem";
-            etapasToolStripMenuItem.Size = new Size(184, 22);
+            etapasToolStripMenuItem.Size = new Size(180, 22);
             etapasToolStripMenuItem.Text = "Etapas";
+            etapasToolStripMenuItem.Click += etapasToolStripMenuItem_Click;
             // 
             // statusAtendimentosToolStripMenuItem
             // 
             statusAtendimentosToolStripMenuItem.Name = "statusAtendimentosToolStripMenuItem";
-            statusAtendimentosToolStripMenuItem.Size = new Size(184, 22);
-            statusAtendimentosToolStripMenuItem.Text = "Status Atendimentos";
+            statusAtendimentosToolStripMenuItem.Size = new Size(180, 22);
+            statusAtendimentosToolStripMenuItem.Text = "Situação ";
+            statusAtendimentosToolStripMenuItem.Click += statusAtendimentosToolStripMenuItem_Click;
             // 
             // atendimentosToolStripMenuItem
             // 
@@ -113,7 +117,7 @@
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(180, 22);
+            sairToolStripMenuItem.Size = new Size(93, 22);
             sairToolStripMenuItem.Text = "Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 

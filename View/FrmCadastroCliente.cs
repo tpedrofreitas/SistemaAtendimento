@@ -16,5 +16,15 @@ namespace SistemaAtendimento
         {
             InitializeComponent();
         }
+
+        private void grbDadosCliente_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
