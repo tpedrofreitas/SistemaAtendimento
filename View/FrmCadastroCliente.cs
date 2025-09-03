@@ -7,23 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaAtendimento.Controller;
+using SistemaAtendimento.Model;
 
 namespace SistemaAtendimento
 {
     public partial class FrmCadastroCliente : Form
     {
+        private ClienteController _clientesController;
         public FrmCadastroCliente()
         {
             InitializeComponent();
+            _clientesController = new ClienteController(this);
         }
 
-        private void grbDadosCliente_Enter(object sender, EventArgs e)
+        private void FrmCadastroCliente_Load(object sender, EventArgs e)
         {
-
+            _clientesController.ListarClientes();   
         }
 
-        private void txtPesquisar_TextChanged(object sender, EventArgs e)
+        public void ExibirClientes(List<Clientes> clientes)
         {
+            dgvClientes.DataSource = clientes;
 
         }
     }

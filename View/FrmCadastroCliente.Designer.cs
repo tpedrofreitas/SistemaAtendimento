@@ -66,6 +66,7 @@
             txtCodigo = new TextBox();
             lblCodigo = new Label();
             btnNovo = new Button();
+            imlIcones = new ImageList(components);
             btnEditar = new Button();
             btnSalvar = new Button();
             btnExcluir = new Button();
@@ -75,7 +76,6 @@
             btnPesquisar = new Button();
             grbListaClientes = new GroupBox();
             dgvClientes = new DataGridView();
-            imlIcones = new ImageList(components);
             grbDadosCliente.SuspendLayout();
             pnlSituacao.SuspendLayout();
             pnlTipoPessoa.SuspendLayout();
@@ -121,7 +121,6 @@
             grbDadosCliente.TabIndex = 0;
             grbDadosCliente.TabStop = false;
             grbDadosCliente.Text = "Dados do Cliente";
-            grbDadosCliente.Enter += grbDadosCliente_Enter;
             // 
             // lblEstado
             // 
@@ -426,6 +425,18 @@
             btnNovo.TextAlign = ContentAlignment.MiddleRight;
             btnNovo.UseVisualStyleBackColor = true;
             // 
+            // imlIcones
+            // 
+            imlIcones.ColorDepth = ColorDepth.Depth32Bit;
+            imlIcones.ImageStream = (ImageListStreamer)resources.GetObject("imlIcones.ImageStream");
+            imlIcones.TransparentColor = Color.Transparent;
+            imlIcones.Images.SetKeyName(0, "icone-cancelar.png");
+            imlIcones.Images.SetKeyName(1, "icone-editar.png");
+            imlIcones.Images.SetKeyName(2, "icone-excluir.png");
+            imlIcones.Images.SetKeyName(3, "icone-novo.png");
+            imlIcones.Images.SetKeyName(4, "icone-salvar.png");
+            imlIcones.Images.SetKeyName(5, "icones-pesquisar.png");
+            // 
             // btnEditar
             // 
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
@@ -484,7 +495,6 @@
             txtPesquisar.Name = "txtPesquisar";
             txtPesquisar.Size = new Size(233, 23);
             txtPesquisar.TabIndex = 20;
-            txtPesquisar.TextChanged += txtPesquisar_TextChanged;
             // 
             // lblPesquisar
             // 
@@ -525,18 +535,6 @@
             dgvClientes.Size = new Size(748, 188);
             dgvClientes.TabIndex = 0;
             // 
-            // imlIcones
-            // 
-            imlIcones.ColorDepth = ColorDepth.Depth32Bit;
-            imlIcones.ImageStream = (ImageListStreamer)resources.GetObject("imlIcones.ImageStream");
-            imlIcones.TransparentColor = Color.Transparent;
-            imlIcones.Images.SetKeyName(0, "icone-cancelar.png");
-            imlIcones.Images.SetKeyName(1, "icone-editar.png");
-            imlIcones.Images.SetKeyName(2, "icone-excluir.png");
-            imlIcones.Images.SetKeyName(3, "icone-novo.png");
-            imlIcones.Images.SetKeyName(4, "icone-salvar.png");
-            imlIcones.Images.SetKeyName(5, "icones-pesquisar.png");
-            // 
             // FrmCadastroCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -554,6 +552,7 @@
             Controls.Add(grbDadosCliente);
             Name = "FrmCadastroCliente";
             Text = "Cadastro de Clientes";
+            Load += FrmCadastroCliente_Load;
             grbDadosCliente.ResumeLayout(false);
             grbDadosCliente.PerformLayout();
             pnlSituacao.ResumeLayout(false);
