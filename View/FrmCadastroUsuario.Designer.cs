@@ -31,8 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroUsuario));
             gbrListadeUsuario = new GroupBox();
-            dgvSituacaoAtendimento = new DataGridView();
+            dvgUsuarios = new DataGridView();
             btnPesquisar = new Button();
+            imlIcone = new ImageList(components);
             lblPesquisar = new Label();
             txtPesquisar = new TextBox();
             btnCancelar = new Button();
@@ -41,6 +42,8 @@
             btnEditar = new Button();
             btnNovo = new Button();
             grbDadosdoUsuario = new GroupBox();
+            cbxPerfil = new ComboBox();
+            lblPerfil = new Label();
             lblSenha = new Label();
             txtOrdem = new TextBox();
             lblNome = new Label();
@@ -48,17 +51,14 @@
             txtNome = new TextBox();
             txtCodigo = new TextBox();
             label1 = new Label();
-            lblPerfil = new Label();
-            cbxPerfil = new ComboBox();
-            imlIcone = new ImageList(components);
             gbrListadeUsuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSituacaoAtendimento).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dvgUsuarios).BeginInit();
             grbDadosdoUsuario.SuspendLayout();
             SuspendLayout();
             // 
             // gbrListadeUsuario
             // 
-            gbrListadeUsuario.Controls.Add(dgvSituacaoAtendimento);
+            gbrListadeUsuario.Controls.Add(dvgUsuarios);
             gbrListadeUsuario.Location = new Point(32, 296);
             gbrListadeUsuario.Name = "gbrListadeUsuario";
             gbrListadeUsuario.Size = new Size(840, 192);
@@ -67,13 +67,13 @@
             gbrListadeUsuario.Text = "Lista de Usuário";
             gbrListadeUsuario.Enter += gbrListadeEtapas_Enter;
             // 
-            // dgvSituacaoAtendimento
+            // dvgUsuarios
             // 
-            dgvSituacaoAtendimento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSituacaoAtendimento.Location = new Point(16, 24);
-            dgvSituacaoAtendimento.Name = "dgvSituacaoAtendimento";
-            dgvSituacaoAtendimento.Size = new Size(808, 150);
-            dgvSituacaoAtendimento.TabIndex = 10;
+            dvgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgUsuarios.Location = new Point(16, 24);
+            dvgUsuarios.Name = "dvgUsuarios";
+            dvgUsuarios.Size = new Size(808, 150);
+            dvgUsuarios.TabIndex = 10;
             // 
             // btnPesquisar
             // 
@@ -84,6 +84,18 @@
             btnPesquisar.Size = new Size(48, 23);
             btnPesquisar.TabIndex = 28;
             btnPesquisar.UseVisualStyleBackColor = true;
+            // 
+            // imlIcone
+            // 
+            imlIcone.ColorDepth = ColorDepth.Depth32Bit;
+            imlIcone.ImageStream = (ImageListStreamer)resources.GetObject("imlIcone.ImageStream");
+            imlIcone.TransparentColor = Color.Transparent;
+            imlIcone.Images.SetKeyName(0, "icone-cancelar.png");
+            imlIcone.Images.SetKeyName(1, "icone-editar.png");
+            imlIcone.Images.SetKeyName(2, "icone-excluir.png");
+            imlIcone.Images.SetKeyName(3, "icone-novo.png");
+            imlIcone.Images.SetKeyName(4, "icone-salvar.png");
+            imlIcone.Images.SetKeyName(5, "icones-pesquisar.png");
             // 
             // lblPesquisar
             // 
@@ -184,6 +196,24 @@
             grbDadosdoUsuario.TabStop = false;
             grbDadosdoUsuario.Text = "Dados do Usuário";
             // 
+            // cbxPerfil
+            // 
+            cbxPerfil.FormattingEnabled = true;
+            cbxPerfil.Items.AddRange(new object[] { "Usuário", "Administrador" });
+            cbxPerfil.Location = new Point(264, 112);
+            cbxPerfil.Name = "cbxPerfil";
+            cbxPerfil.Size = new Size(168, 23);
+            cbxPerfil.TabIndex = 8;
+            // 
+            // lblPerfil
+            // 
+            lblPerfil.AutoSize = true;
+            lblPerfil.Location = new Point(264, 88);
+            lblPerfil.Name = "lblPerfil";
+            lblPerfil.Size = new Size(34, 15);
+            lblPerfil.TabIndex = 7;
+            lblPerfil.Text = "Perfil";
+            // 
             // lblSenha
             // 
             lblSenha.AutoSize = true;
@@ -240,36 +270,6 @@
             label1.Size = new Size(0, 15);
             label1.TabIndex = 0;
             // 
-            // lblPerfil
-            // 
-            lblPerfil.AutoSize = true;
-            lblPerfil.Location = new Point(264, 88);
-            lblPerfil.Name = "lblPerfil";
-            lblPerfil.Size = new Size(34, 15);
-            lblPerfil.TabIndex = 7;
-            lblPerfil.Text = "Perfil";
-            // 
-            // cbxPerfil
-            // 
-            cbxPerfil.FormattingEnabled = true;
-            cbxPerfil.Items.AddRange(new object[] { "Usuário", "Administrador" });
-            cbxPerfil.Location = new Point(264, 112);
-            cbxPerfil.Name = "cbxPerfil";
-            cbxPerfil.Size = new Size(168, 23);
-            cbxPerfil.TabIndex = 8;
-            // 
-            // imlIcone
-            // 
-            imlIcone.ColorDepth = ColorDepth.Depth32Bit;
-            imlIcone.ImageStream = (ImageListStreamer)resources.GetObject("imlIcone.ImageStream");
-            imlIcone.TransparentColor = Color.Transparent;
-            imlIcone.Images.SetKeyName(0, "icone-cancelar.png");
-            imlIcone.Images.SetKeyName(1, "icone-editar.png");
-            imlIcone.Images.SetKeyName(2, "icone-excluir.png");
-            imlIcone.Images.SetKeyName(3, "icone-novo.png");
-            imlIcone.Images.SetKeyName(4, "icone-salvar.png");
-            imlIcone.Images.SetKeyName(5, "icones-pesquisar.png");
-            // 
             // FrmCadastroUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -288,7 +288,7 @@
             Name = "FrmCadastroUsuario";
             Text = "Cadastro de Usuários";
             gbrListadeUsuario.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvSituacaoAtendimento).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dvgUsuarios).EndInit();
             grbDadosdoUsuario.ResumeLayout(false);
             grbDadosdoUsuario.PerformLayout();
             ResumeLayout(false);
@@ -298,7 +298,7 @@
         #endregion
 
         private GroupBox gbrListadeUsuario;
-        private DataGridView dgvSituacaoAtendimento;
+        private DataGridView dvgUsuarios;
         private Button btnPesquisar;
         private Label lblPesquisar;
         private TextBox txtPesquisar;

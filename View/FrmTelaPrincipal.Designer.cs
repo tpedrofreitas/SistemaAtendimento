@@ -33,7 +33,7 @@
             clientesToolStripMenuItem = new ToolStripMenuItem();
             usuáriosToolStripMenuItem = new ToolStripMenuItem();
             etapasToolStripMenuItem = new ToolStripMenuItem();
-            statusAtendimentosToolStripMenuItem = new ToolStripMenuItem();
+            SituacaoAtendimento = new ToolStripMenuItem();
             atendimentosToolStripMenuItem = new ToolStripMenuItem();
             novoAtendimentoToolStripMenuItem = new ToolStripMenuItem();
             consultasToolStripMenuItem = new ToolStripMenuItem();
@@ -54,7 +54,7 @@
             // 
             // cadastrosToolStripMenuItem
             // 
-            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, usuáriosToolStripMenuItem, etapasToolStripMenuItem, statusAtendimentosToolStripMenuItem });
+            cadastrosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesToolStripMenuItem, usuáriosToolStripMenuItem, etapasToolStripMenuItem, SituacaoAtendimento });
             cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             cadastrosToolStripMenuItem.Size = new Size(71, 20);
             cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -63,30 +63,30 @@
             // clientesToolStripMenuItem
             // 
             clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            clientesToolStripMenuItem.Size = new Size(180, 22);
+            clientesToolStripMenuItem.Size = new Size(192, 22);
             clientesToolStripMenuItem.Text = "Clientes";
             clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
             // 
             // usuáriosToolStripMenuItem
             // 
             usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            usuáriosToolStripMenuItem.Size = new Size(180, 22);
+            usuáriosToolStripMenuItem.Size = new Size(192, 22);
             usuáriosToolStripMenuItem.Text = "Usuários";
             usuáriosToolStripMenuItem.Click += usuáriosToolStripMenuItem_Click;
             // 
             // etapasToolStripMenuItem
             // 
             etapasToolStripMenuItem.Name = "etapasToolStripMenuItem";
-            etapasToolStripMenuItem.Size = new Size(180, 22);
+            etapasToolStripMenuItem.Size = new Size(192, 22);
             etapasToolStripMenuItem.Text = "Etapas";
             etapasToolStripMenuItem.Click += etapasToolStripMenuItem_Click;
             // 
-            // statusAtendimentosToolStripMenuItem
+            // SituacaoAtendimento
             // 
-            statusAtendimentosToolStripMenuItem.Name = "statusAtendimentosToolStripMenuItem";
-            statusAtendimentosToolStripMenuItem.Size = new Size(180, 22);
-            statusAtendimentosToolStripMenuItem.Text = "Situação ";
-            statusAtendimentosToolStripMenuItem.Click += statusAtendimentosToolStripMenuItem_Click;
+            SituacaoAtendimento.Name = "SituacaoAtendimento";
+            SituacaoAtendimento.Size = new Size(192, 22);
+            SituacaoAtendimento.Text = "Situação Atendimento";
+            SituacaoAtendimento.Click += statusAtendimentosToolStripMenuItem_Click;
             // 
             // atendimentosToolStripMenuItem
             // 
@@ -141,6 +141,7 @@
             MainMenuStrip = mnuTelaPrincipal;
             Name = "FrmTelaPrincipal";
             Text = "Sistema de Atendimento";
+            Load += FrmTelaPrincipal_Load;
             mnuTelaPrincipal.ResumeLayout(false);
             mnuTelaPrincipal.PerformLayout();
             ResumeLayout(false);
@@ -154,7 +155,7 @@
         private ToolStripMenuItem clientesToolStripMenuItem;
         private ToolStripMenuItem usuáriosToolStripMenuItem;
         private ToolStripMenuItem etapasToolStripMenuItem;
-        private ToolStripMenuItem statusAtendimentosToolStripMenuItem;
+        private ToolStripMenuItem SituacaoAtendimento;
         private ToolStripMenuItem atendimentosToolStripMenuItem;
         private ToolStripMenuItem sistemaToolStripMenuItem;
         private ToolStripMenuItem novoAtendimentoToolStripMenuItem;
