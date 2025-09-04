@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroUsuario));
             gbrListadeUsuario = new GroupBox();
-            dvgUsuarios = new DataGridView();
+            dgvUsuarios = new DataGridView();
             btnPesquisar = new Button();
             imlIcone = new ImageList(components);
             lblPesquisar = new Label();
@@ -52,28 +52,27 @@
             txtCodigo = new TextBox();
             label1 = new Label();
             gbrListadeUsuario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dvgUsuarios).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             grbDadosdoUsuario.SuspendLayout();
             SuspendLayout();
             // 
             // gbrListadeUsuario
             // 
-            gbrListadeUsuario.Controls.Add(dvgUsuarios);
+            gbrListadeUsuario.Controls.Add(dgvUsuarios);
             gbrListadeUsuario.Location = new Point(32, 296);
             gbrListadeUsuario.Name = "gbrListadeUsuario";
             gbrListadeUsuario.Size = new Size(840, 192);
             gbrListadeUsuario.TabIndex = 29;
             gbrListadeUsuario.TabStop = false;
             gbrListadeUsuario.Text = "Lista de Usuário";
-            gbrListadeUsuario.Enter += gbrListadeEtapas_Enter;
             // 
-            // dvgUsuarios
+            // dgvUsuarios
             // 
-            dvgUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgUsuarios.Location = new Point(16, 24);
-            dvgUsuarios.Name = "dvgUsuarios";
-            dvgUsuarios.Size = new Size(808, 150);
-            dvgUsuarios.TabIndex = 10;
+            dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUsuarios.Location = new Point(16, 24);
+            dgvUsuarios.Name = "dgvUsuarios";
+            dgvUsuarios.Size = new Size(808, 150);
+            dgvUsuarios.TabIndex = 10;
             // 
             // btnPesquisar
             // 
@@ -287,8 +286,9 @@
             Controls.Add(grbDadosdoUsuario);
             Name = "FrmCadastroUsuario";
             Text = "Cadastro de Usuários";
+            Load += FrmCadastroUsuario_Load;
             gbrListadeUsuario.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dvgUsuarios).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             grbDadosdoUsuario.ResumeLayout(false);
             grbDadosdoUsuario.PerformLayout();
             ResumeLayout(false);
@@ -298,7 +298,7 @@
         #endregion
 
         private GroupBox gbrListadeUsuario;
-        private DataGridView dvgUsuarios;
+        private DataGridView dgvUsuarios;
         private Button btnPesquisar;
         private Label lblPesquisar;
         private TextBox txtPesquisar;
