@@ -31,8 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroEtapa));
             gbrListadeEtapas = new GroupBox();
-            dgvSituacaoAtendimento = new DataGridView();
+            dgvEtapas = new DataGridView();
             btnPesquisar = new Button();
+            imlIcones = new ImageList(components);
             lblPesquisar = new Label();
             txtPesquisar = new TextBox();
             btnCancelar = new Button();
@@ -51,16 +52,15 @@
             txtNome = new TextBox();
             txtCodigo = new TextBox();
             label1 = new Label();
-            imlIcones = new ImageList(components);
             gbrListadeEtapas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSituacaoAtendimento).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEtapas).BeginInit();
             grbDadosdaEtapas.SuspendLayout();
             pnlSituacao.SuspendLayout();
             SuspendLayout();
             // 
             // gbrListadeEtapas
             // 
-            gbrListadeEtapas.Controls.Add(dgvSituacaoAtendimento);
+            gbrListadeEtapas.Controls.Add(dgvEtapas);
             gbrListadeEtapas.Location = new Point(32, 288);
             gbrListadeEtapas.Name = "gbrListadeEtapas";
             gbrListadeEtapas.Size = new Size(840, 192);
@@ -68,13 +68,13 @@
             gbrListadeEtapas.TabStop = false;
             gbrListadeEtapas.Text = "Lista de Etapas";
             // 
-            // dgvSituacaoAtendimento
+            // dgvEtapas
             // 
-            dgvSituacaoAtendimento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSituacaoAtendimento.Location = new Point(16, 24);
-            dgvSituacaoAtendimento.Name = "dgvSituacaoAtendimento";
-            dgvSituacaoAtendimento.Size = new Size(808, 150);
-            dgvSituacaoAtendimento.TabIndex = 10;
+            dgvEtapas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEtapas.Location = new Point(16, 24);
+            dgvEtapas.Name = "dgvEtapas";
+            dgvEtapas.Size = new Size(808, 150);
+            dgvEtapas.TabIndex = 10;
             // 
             // btnPesquisar
             // 
@@ -85,6 +85,18 @@
             btnPesquisar.Size = new Size(48, 23);
             btnPesquisar.TabIndex = 18;
             btnPesquisar.UseVisualStyleBackColor = true;
+            // 
+            // imlIcones
+            // 
+            imlIcones.ColorDepth = ColorDepth.Depth32Bit;
+            imlIcones.ImageStream = (ImageListStreamer)resources.GetObject("imlIcones.ImageStream");
+            imlIcones.TransparentColor = Color.Transparent;
+            imlIcones.Images.SetKeyName(0, "icone-cancelar.png");
+            imlIcones.Images.SetKeyName(1, "icone-editar.png");
+            imlIcones.Images.SetKeyName(2, "icone-excluir.png");
+            imlIcones.Images.SetKeyName(3, "icone-novo.png");
+            imlIcones.Images.SetKeyName(4, "icone-salvar.png");
+            imlIcones.Images.SetKeyName(5, "icones-pesquisar.png");
             // 
             // lblPesquisar
             // 
@@ -183,7 +195,6 @@
             grbDadosdaEtapas.TabIndex = 10;
             grbDadosdaEtapas.TabStop = false;
             grbDadosdaEtapas.Text = "Dados da Etapas";
-            grbDadosdaEtapas.Enter += grbDadosdoSituacaoAtendimento_Enter;
             // 
             // pnlSituacao
             // 
@@ -272,18 +283,6 @@
             label1.Size = new Size(0, 15);
             label1.TabIndex = 0;
             // 
-            // imlIcones
-            // 
-            imlIcones.ColorDepth = ColorDepth.Depth32Bit;
-            imlIcones.ImageStream = (ImageListStreamer)resources.GetObject("imlIcones.ImageStream");
-            imlIcones.TransparentColor = Color.Transparent;
-            imlIcones.Images.SetKeyName(0, "icone-cancelar.png");
-            imlIcones.Images.SetKeyName(1, "icone-editar.png");
-            imlIcones.Images.SetKeyName(2, "icone-excluir.png");
-            imlIcones.Images.SetKeyName(3, "icone-novo.png");
-            imlIcones.Images.SetKeyName(4, "icone-salvar.png");
-            imlIcones.Images.SetKeyName(5, "icones-pesquisar.png");
-            // 
             // FrmCadastroEtapa
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -301,8 +300,9 @@
             Controls.Add(grbDadosdaEtapas);
             Name = "FrmCadastroEtapa";
             Text = "Cadastro de Etapas";
+            Load += FrmCadastroEtapa_Load;
             gbrListadeEtapas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvSituacaoAtendimento).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEtapas).EndInit();
             grbDadosdaEtapas.ResumeLayout(false);
             grbDadosdaEtapas.PerformLayout();
             pnlSituacao.ResumeLayout(false);
@@ -314,7 +314,7 @@
         #endregion
 
         private GroupBox gbrListadeEtapas;
-        private DataGridView dgvSituacaoAtendimento;
+        private DataGridView dgvEtapas;
         private Button btnPesquisar;
         private Label lblPesquisar;
         private TextBox txtPesquisar;
