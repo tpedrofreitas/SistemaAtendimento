@@ -1,6 +1,6 @@
 ﻿namespace SistemaAtendimento.View
 {
-    partial class FrmCadastroSitucaoAtendimento
+    partial class FrmCadastroSituacaoAtendimento
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroSitucaoAtendimento));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroSituacaoAtendimento));
             label1 = new Label();
             grbDadosdoSituacaoAtendimento = new GroupBox();
             pnlSituacao = new Panel();
@@ -65,7 +65,6 @@
             label1.Name = "label1";
             label1.Size = new Size(0, 15);
             label1.TabIndex = 0;
-            label1.Click += label1_Click;
             // 
             // grbDadosdoSituacaoAtendimento
             // 
@@ -83,7 +82,6 @@
             grbDadosdoSituacaoAtendimento.TabIndex = 0;
             grbDadosdoSituacaoAtendimento.TabStop = false;
             grbDadosdoSituacaoAtendimento.Text = "Dados da Situação do Atendimento";
-            grbDadosdoSituacaoAtendimento.Enter += groupBox1_Enter;
             // 
             // pnlSituacao
             // 
@@ -104,7 +102,6 @@
             rdbInativo.TabStop = true;
             rdbInativo.Text = "Inativo";
             rdbInativo.UseVisualStyleBackColor = true;
-            rdbInativo.CheckedChanged += radioButton1_CheckedChanged;
             // 
             // rdbAtivo
             // 
@@ -116,7 +113,6 @@
             rdbAtivo.TabStop = true;
             rdbAtivo.Text = "Ativo";
             rdbAtivo.UseVisualStyleBackColor = true;
-            rdbAtivo.CheckedChanged += rdbAtivo_CheckedChanged;
             // 
             // lblCor
             // 
@@ -126,7 +122,6 @@
             lblCor.Size = new Size(26, 15);
             lblCor.TabIndex = 5;
             lblCor.Text = "Cor";
-            lblCor.Click += label2_Click;
             // 
             // txtCor
             // 
@@ -243,7 +238,6 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.UseVisualStyleBackColor = true;
-            btnCancelar.Click += btnCancelar_Click;
             // 
             // txtPesquisar
             // 
@@ -289,7 +283,7 @@
             btnPesquisar.TabIndex = 8;
             btnPesquisar.UseVisualStyleBackColor = true;
             // 
-            // FrmCadastroSitucaoAtendimento
+            // FrmCadastroSituacaoAtendimento
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -304,9 +298,9 @@
             Controls.Add(btnEditar);
             Controls.Add(btnNovo);
             Controls.Add(grbDadosdoSituacaoAtendimento);
-            Name = "FrmCadastroSitucaoAtendimento";
+            Name = "FrmCadastroSituacaoAtendimento";
             Text = "Cadastro da Situação do Atendimentos";
-            Load += FrmCadastroSitucaoAtendimento_Load;
+            Load += FrmCadastroSituacaoAtendimento_Load;
             grbDadosdoSituacaoAtendimento.ResumeLayout(false);
             grbDadosdoSituacaoAtendimento.PerformLayout();
             pnlSituacao.ResumeLayout(false);

@@ -9,14 +9,14 @@ using SistemaAtendimento.Model;
 
 namespace SistemaAtendimento.Repositories
 {
-    public class EtapaRepository
+    public class SituacaoAtendimentoRepository
     {
-        public List<Etapas> Listar()
+        public List<SituacaoAtendimentos> Listar()
         {
-            var Etapas = new List<Etapas>();
+            var SituacaoAtendimento = new List<SituacaoAtendimentos>();
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = "SELECT * FROM etapas";
+                string sql = "SELECT * FROM situacao_atendimentos";
                 using (var comando = new SqlCommand(sql, conexao))
                 {
                     conexao.Open();
@@ -24,45 +24,42 @@ namespace SistemaAtendimento.Repositories
                     {
                         while (linhas.Read())
                         {
-                            Etapas.Add(new Etapas()
+                            SituacaoAtendimento.Add(new SituacaoAtendimentos()
                             {
 
                                 Id = Convert.ToInt32(linhas["id"]),
                                 Nome = linhas["nome"].ToString(),
-                                Ordem = Convert.ToInt32(linhas["ordem"]),
+                                Cor = linhas["cor"].ToString(),
                                 Ativo = Convert.ToBoolean(linhas["ativo"])
 
                             });
 
 
-                         }  
+                        }
                     }
                 }
             }
-            return Etapas;
+            return SituacaoAtendimento;
         }
-        public void Inserir (Etapas etapas)
+        public void Inserir(SituacaoAtendimentos situacaoatendimentos)
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = "INSERT INTO etapas (nome,ordem,ativo) VALUES (@nome,@ordem,@ativo)";
+                string sql = "INSERT INTO situacao_atendimentos (nome,cor,ativo) VALUES (@nome,@cor,@ativo)";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
-                    comando.Parameters.AddWithValue("@nome", etapas.Nome);
-                    comando.Parameters.AddWithValue("@ordem", etapas.Ordem);
-                    comando.Parameters.AddWithValue("@ativo", etapas.Ativo);
+                    comando.Parameters.AddWithValue("@nome", situacaoatendimentos.Nome);
+                    comando.Parameters.AddWithValue("@cor", situacaoatendimentos.Cor);
+                    comando.Parameters.AddWithValue("@ativo", situacaoatendimentos.Ativo);
 
                     conexao.Open();
                     comando.ExecuteNonQuery();
 
                 }
-                   
+
 
             }
         }
-
-
-
     }
 }

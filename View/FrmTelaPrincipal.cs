@@ -57,7 +57,7 @@ namespace SistemaAtendimento
 
         private void statusAtendimentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCadastroSitucaoAtendimento frmCadastroSitucaoAtendimento = new FrmCadastroSitucaoAtendimento();
+            FrmCadastroSituacaoAtendimento frmCadastroSitucaoAtendimento = new FrmCadastroSituacaoAtendimento();
             frmCadastroSitucaoAtendimento.ShowDialog();
         }
 
