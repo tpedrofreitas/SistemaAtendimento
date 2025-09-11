@@ -45,7 +45,7 @@
             lblBairro = new Label();
             txtNumero = new TextBox();
             lblNumero = new Label();
-            txtEndereço = new TextBox();
+            txtEndereco = new TextBox();
             label2 = new Label();
             txtCep = new TextBox();
             lblCep = new Label();
@@ -97,7 +97,7 @@
             grbDadosCliente.Controls.Add(lblBairro);
             grbDadosCliente.Controls.Add(txtNumero);
             grbDadosCliente.Controls.Add(lblNumero);
-            grbDadosCliente.Controls.Add(txtEndereço);
+            grbDadosCliente.Controls.Add(txtEndereco);
             grbDadosCliente.Controls.Add(label2);
             grbDadosCliente.Controls.Add(txtCep);
             grbDadosCliente.Controls.Add(lblCep);
@@ -156,13 +156,13 @@
             rdbInativo.Name = "rdbInativo";
             rdbInativo.Size = new Size(61, 19);
             rdbInativo.TabIndex = 1;
-            rdbInativo.TabStop = true;
             rdbInativo.Text = "Inativo";
             rdbInativo.UseVisualStyleBackColor = true;
             // 
             // rdbAtivo
             // 
             rdbAtivo.AutoSize = true;
+            rdbAtivo.Checked = true;
             rdbAtivo.Location = new Point(3, 3);
             rdbAtivo.Name = "rdbAtivo";
             rdbAtivo.Size = new Size(53, 19);
@@ -244,12 +244,12 @@
             lblNumero.TabIndex = 18;
             lblNumero.Text = "Número";
             // 
-            // txtEndereço
+            // txtEndereco
             // 
-            txtEndereço.Location = new Point(196, 157);
-            txtEndereço.Name = "txtEndereço";
-            txtEndereço.Size = new Size(331, 23);
-            txtEndereço.TabIndex = 8;
+            txtEndereco.Location = new Point(196, 157);
+            txtEndereco.Name = "txtEndereco";
+            txtEndereco.Size = new Size(331, 23);
+            txtEndereco.TabIndex = 8;
             // 
             // label2
             // 
@@ -308,13 +308,13 @@
             rdbJuridica.Name = "rdbJuridica";
             rdbJuridica.Size = new Size(65, 19);
             rdbJuridica.TabIndex = 1;
-            rdbJuridica.TabStop = true;
             rdbJuridica.Text = "Jurídica";
             rdbJuridica.UseVisualStyleBackColor = true;
             // 
             // rdbFisica
             // 
             rdbFisica.AutoSize = true;
+            rdbFisica.Checked = true;
             rdbFisica.Location = new Point(3, 3);
             rdbFisica.Name = "rdbFisica";
             rdbFisica.Size = new Size(54, 19);
@@ -386,6 +386,7 @@
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(266, 23);
             txtNome.TabIndex = 1;
+            
             // 
             // lblNome
             // 
@@ -462,6 +463,7 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnExcluir
             // 
@@ -590,7 +592,7 @@
         private Label lblBairro;
         private TextBox txtNumero;
         private Label lblNumero;
-        private TextBox txtEndereço;
+        private TextBox txtEndereco;
         private Label label2;
         private TextBox txtCep;
         private Label lblCep;
