@@ -38,7 +38,7 @@ namespace SistemaAtendimento.View
         {
             dgvEtapas.DataSource = etapas;
         }
-              
+
 
         private void btnSalvar_Click_1(object sender, EventArgs e)
         {
@@ -52,9 +52,16 @@ namespace SistemaAtendimento.View
             if (!ValidarDados(etapas))
                 return;
 
-            _etapaController.Salvar(etapas);
-
-                   }
+            if (String.IsNullOrEmpty(txtCodigo.Text))
+            {
+                _etapaController.Salvar(etapas);
+            }
+            else
+            {
+                etapas.Id = Convert.ToInt32(txtCodigo.Text);
+                _etapaController.Atualizar(etapas);
+            }
+        }
         private bool ValidarDados(Etapas etapas)
         {
             if (string.IsNullOrWhiteSpace(etapas.Nome))
@@ -114,7 +121,45 @@ namespace SistemaAtendimento.View
             DesabilitarCampos();
         }
 
+        private void dgvEtapas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //MessageBox.Show("Funcionou");
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow linhaSelicionada = dgvEtapas.Rows[e.RowIndex];
+
+                txtCodigo.Text = linhaSelicionada.Cells["Id"].Value.ToString();
+                txtNome.Text = linhaSelicionada.Cells["Nome"].Value.ToString();
+                txtOrdem.Text = linhaSelicionada.Cells["Ordem"].Value.ToString();
+                rdbAtivo.Checked = Convert.ToBoolean(linhaSelicionada.Cells["Ativo"].Value);
+
+                btnEditar.Enabled = true;
+                btnNovo.Enabled = false;
+                btnCancelar.Enabled = true;
+            }
+
+
+        }
+
+        private void btnNovo_Click_1(object sender, EventArgs e)
+        {
+            HabilitarCampos();
+            btnEditar.Enabled = false;
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+            HabilitarCampos();
+            btnEditar.Enabled = false;
+        }
+
+        private void btnCancelar_Click_1(object sender, EventArgs e)
+        {
+            DesabilitarCampos();
+        }
     }
+    
 }
         
     

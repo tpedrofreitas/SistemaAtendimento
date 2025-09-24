@@ -60,6 +60,27 @@ namespace SistemaAtendimento.Controller
 
         }
 
+        public void Atualizar(Clientes cliente)
+        {
 
+
+            try
+            {
+                _clienteRepository.Atualizar(cliente);
+                _frmCadastroCliente.ExibirMensagem("Cliente Atualizado com Sucesso!");
+                //Atualizar DataGrid
+                ListarClientes();
+
+                _frmCadastroCliente.DesabilitarCampos();
+
+
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroCliente.ExibirMensagem($"Erro ao Atualizar o cliente: {ex.Message}");
+            }
+
+
+        }
     }
 }

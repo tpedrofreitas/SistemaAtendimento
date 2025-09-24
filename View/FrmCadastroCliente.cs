@@ -60,7 +60,16 @@ namespace SistemaAtendimento
             if (!ValidarDados(cliente))
                 return;
 
-            _clientesController.Salvar(cliente);
+            if (String.IsNullOrEmpty(txtCodigo.Text))
+            {
+                _clientesController.Salvar(cliente);
+            }
+            else
+            {
+                cliente.Id = Convert.ToInt32(txtCodigo.Text);
+                _clientesController.Atualizar(cliente);
+            }
+
 
         }
         public bool ValidarDados(Clientes cliente)
@@ -243,7 +252,46 @@ namespace SistemaAtendimento
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            DesabilitarCampos();    
+            DesabilitarCampos();
         }
+
+        private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // MessageBox.Show("Funcionou");
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow linhaSelicionada = dgvClientes.Rows[e.RowIndex];
+
+                txtCodigo.Text = linhaSelicionada.Cells["Id"].Value.ToString();
+                txtNome.Text = linhaSelicionada.Cells["Nome"].Value.ToString();
+                txtEmail.Text = linhaSelicionada.Cells["Email"].Value.ToString();
+                txtCpfCnpj.Text = linhaSelicionada.Cells["Cpf_Cnpj"].Value.ToString();
+                txtTelefone.Text = linhaSelicionada.Cells["Telefone"].Value.ToString();
+                txtCelular.Text = linhaSelicionada.Cells["Celular"].Value.ToString();
+                txtCep.Text = linhaSelicionada.Cells["Cep"].Value.ToString();
+                txtEndereco.Text = linhaSelicionada.Cells["Endereco"].Value.ToString();
+                txtNumero.Text = linhaSelicionada.Cells["Numero"].Value.ToString();
+                txtComplemento.Text = linhaSelicionada.Cells["Complemento"].Value.ToString();
+                txtBairro.Text = linhaSelicionada.Cells["Bairro"].Value.ToString();
+                txtCidade.Text = linhaSelicionada.Cells["Cidade"].Value.ToString();
+                cbxEstado.Text = linhaSelicionada.Cells["Estado"].Value.ToString();
+                rdbJuridica.Checked = linhaSelicionada.Cells["TipoPessoa"].Value.ToString() == "J";
+                rdbFisica.Checked = linhaSelicionada.Cells["TipoPessoa"].Value.ToString() == "F";
+                rdbAtivo.Checked = Convert.ToBoolean(linhaSelicionada.Cells["Ativo"].Value);
+                rdbInativo.Checked = !Convert.ToBoolean(linhaSelicionada.Cells["Ativo"].Value);
+
+                btnEditar.Enabled = true;
+                btnNovo.Enabled = false;
+                btnCancelar.Enabled = true;
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            HabilitarCampos();
+            btnEditar.Enabled = false;
+        }
+
+       
     }
 }

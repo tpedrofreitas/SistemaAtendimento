@@ -34,7 +34,7 @@ namespace SistemaAtendimento.Controller
 
         }
 
-         
+
         public void Salvar(Etapas etapa)
         {
 
@@ -46,7 +46,30 @@ namespace SistemaAtendimento.Controller
                 //Atualizar DataGrid
                 ListarEtapas();
 
-               // _frmCadastroEtapa.DesabilitarCampos();
+                // _frmCadastroEtapa.DesabilitarCampos();
+
+
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroEtapa.ExibirMensagem($"Erro ao Cadastrar Etapa: {ex.Message}");
+            }
+
+
+        }
+
+        public void Atualizar(Etapas etapa)
+        {
+
+
+            try
+            {
+                _etapaRepository.Atualizar(etapa);
+                _frmCadastroEtapa.ExibirMensagem("Etapa Atualizado com Sucesso!");
+                //Atualizar DataGrid
+                ListarEtapas();
+
+                // _frmCadastroEtapa.DesabilitarCampos();
 
 
             }
