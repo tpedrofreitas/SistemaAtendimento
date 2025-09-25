@@ -499,6 +499,7 @@
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnCancelar
             // 
@@ -563,7 +564,6 @@
             dgvClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClientes.Size = new Size(748, 188);
             dgvClientes.TabIndex = 0;
-           
             dgvClientes.CellDoubleClick += dgvClientes_CellDoubleClick;
             // 
             // FrmCadastroCliente

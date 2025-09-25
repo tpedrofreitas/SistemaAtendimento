@@ -80,5 +80,20 @@ namespace SistemaAtendimento.Controller
 
 
         }
+        public void Excluir(int id)
+        {
+            try
+            {
+                _etapaRepository.Excluir(id);
+                _frmCadastroEtapa.ExibirMensagem("Cliente Excluido com Sucesso!");
+                ListarEtapas();
+
+                _frmCadastroEtapa.DesabilitarCampos();
+            }
+            catch (Exception ex)
+            {
+                _frmCadastroEtapa.ExibirMensagem($"Erro ao Excluir o cliente: {ex.Message}");
+            }
+        }
     }
 }

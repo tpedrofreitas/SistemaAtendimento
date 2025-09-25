@@ -283,6 +283,7 @@ namespace SistemaAtendimento
                 btnEditar.Enabled = true;
                 btnNovo.Enabled = false;
                 btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
             }
         }
 
@@ -292,6 +293,20 @@ namespace SistemaAtendimento
             btnEditar.Enabled = false;
         }
 
-       
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtCidade.Text))
+            {
+                ExibirMensagem("Selecione um cliente");
+                return;
+            }
+            DialogResult resultado = MessageBox.Show("Deseja Excluir este Cliente", "Confirmação",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+
+            if(resultado == DialogResult.Yes)
+            {
+                int id  = Convert.ToInt32(txtCodigo.Text);
+                _clientesController.Excluir(id);
+            }
+        }
     }
 }

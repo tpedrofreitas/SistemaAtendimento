@@ -42,10 +42,12 @@
             btnEditar = new Button();
             btnNovo = new Button();
             grbDadosdoUsuario = new GroupBox();
+            txtEmail = new TextBox();
+            lblEmail = new Label();
             cbxPerfil = new ComboBox();
             lblPerfil = new Label();
             lblSenha = new Label();
-            txtOrdem = new TextBox();
+            txtSenha = new TextBox();
             lblNome = new Label();
             lblCodigo = new Label();
             txtNome = new TextBox();
@@ -71,8 +73,10 @@
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuarios.Location = new Point(16, 24);
             dgvUsuarios.Name = "dgvUsuarios";
+            dgvUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsuarios.Size = new Size(808, 150);
             dgvUsuarios.TabIndex = 10;
+            dgvUsuarios.CellDoubleClick += dgvUsuarios_CellDoubleClick;
             // 
             // btnPesquisar
             // 
@@ -114,6 +118,7 @@
             // 
             // btnCancelar
             // 
+            btnCancelar.Enabled = false;
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.ImageIndex = 0;
             btnCancelar.ImageList = imlIcone;
@@ -124,9 +129,11 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnExcluir
             // 
+            btnExcluir.Enabled = false;
             btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
             btnExcluir.ImageIndex = 2;
             btnExcluir.ImageList = imlIcone;
@@ -137,9 +144,11 @@
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnSalvar
             // 
+            btnSalvar.Enabled = false;
             btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
             btnSalvar.ImageIndex = 4;
             btnSalvar.ImageList = imlIcone;
@@ -150,9 +159,11 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
             btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // btnEditar
             // 
+            btnEditar.Enabled = false;
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditar.ImageIndex = 1;
             btnEditar.ImageList = imlIcone;
@@ -163,6 +174,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnNovo
             // 
@@ -176,13 +188,16 @@
             btnNovo.Text = "Novo";
             btnNovo.TextAlign = ContentAlignment.MiddleRight;
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
             // 
             // grbDadosdoUsuario
             // 
+            grbDadosdoUsuario.Controls.Add(txtEmail);
+            grbDadosdoUsuario.Controls.Add(lblEmail);
             grbDadosdoUsuario.Controls.Add(cbxPerfil);
             grbDadosdoUsuario.Controls.Add(lblPerfil);
             grbDadosdoUsuario.Controls.Add(lblSenha);
-            grbDadosdoUsuario.Controls.Add(txtOrdem);
+            grbDadosdoUsuario.Controls.Add(txtSenha);
             grbDadosdoUsuario.Controls.Add(lblNome);
             grbDadosdoUsuario.Controls.Add(lblCodigo);
             grbDadosdoUsuario.Controls.Add(txtNome);
@@ -195,8 +210,26 @@
             grbDadosdoUsuario.TabStop = false;
             grbDadosdoUsuario.Text = "Dados do Usuário";
             // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(488, 112);
+            txtEmail.Name = "txtEmail";
+            txtEmail.ReadOnly = true;
+            txtEmail.Size = new Size(352, 23);
+            txtEmail.TabIndex = 31;
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(488, 96);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(41, 15);
+            lblEmail.TabIndex = 30;
+            lblEmail.Text = "E-mail";
+            // 
             // cbxPerfil
             // 
+            cbxPerfil.Enabled = false;
             cbxPerfil.FormattingEnabled = true;
             cbxPerfil.Items.AddRange(new object[] { "Usuário", "Administrador" });
             cbxPerfil.Location = new Point(264, 112);
@@ -222,12 +255,13 @@
             lblSenha.TabIndex = 5;
             lblSenha.Text = "Senha";
             // 
-            // txtOrdem
+            // txtSenha
             // 
-            txtOrdem.Location = new Point(32, 112);
-            txtOrdem.Name = "txtOrdem";
-            txtOrdem.Size = new Size(160, 23);
-            txtOrdem.TabIndex = 1;
+            txtSenha.Location = new Point(32, 112);
+            txtSenha.Name = "txtSenha";
+            txtSenha.ReadOnly = true;
+            txtSenha.Size = new Size(160, 23);
+            txtSenha.TabIndex = 1;
             // 
             // lblNome
             // 
@@ -251,6 +285,7 @@
             // 
             txtNome.Location = new Point(232, 40);
             txtNome.Name = "txtNome";
+            txtNome.ReadOnly = true;
             txtNome.Size = new Size(560, 23);
             txtNome.TabIndex = 2;
             // 
@@ -258,6 +293,7 @@
             // 
             txtCodigo.Location = new Point(32, 40);
             txtCodigo.Name = "txtCodigo";
+            txtCodigo.ReadOnly = true;
             txtCodigo.Size = new Size(152, 23);
             txtCodigo.TabIndex = 1;
             // 
@@ -309,7 +345,7 @@
         private Button btnNovo;
         private GroupBox grbDadosdoUsuario;
         private Label lblSenha;
-        private TextBox txtOrdem;
+        private TextBox txtSenha;
         private Label lblNome;
         private Label lblCodigo;
         private TextBox txtNome;
@@ -318,5 +354,7 @@
         private ComboBox cbxPerfil;
         private Label lblPerfil;
         private ImageList imlIcone;
+        private Label lblEmail;
+        private TextBox txtEmail;
     }
 }
