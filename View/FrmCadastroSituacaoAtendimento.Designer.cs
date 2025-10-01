@@ -127,8 +127,10 @@
             // 
             txtCor.Location = new Point(32, 112);
             txtCor.Name = "txtCor";
+            txtCor.ReadOnly = true;
             txtCor.Size = new Size(160, 23);
             txtCor.TabIndex = 1;
+            txtCor.TextChanged += txtCor_TextChanged;
             // 
             // lblNome
             // 
@@ -152,6 +154,7 @@
             // 
             txtNome.Location = new Point(224, 40);
             txtNome.Name = "txtNome";
+            txtNome.ReadOnly = true;
             txtNome.Size = new Size(560, 23);
             txtNome.TabIndex = 2;
             // 
@@ -159,6 +162,7 @@
             // 
             txtCodigo.Location = new Point(32, 40);
             txtCodigo.Name = "txtCodigo";
+            txtCodigo.ReadOnly = true;
             txtCodigo.Size = new Size(152, 23);
             txtCodigo.TabIndex = 1;
             // 
@@ -174,6 +178,7 @@
             btnNovo.Text = "Novo";
             btnNovo.TextAlign = ContentAlignment.MiddleRight;
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
             // 
             // imlIcones
             // 
@@ -199,6 +204,7 @@
             btnEditar.Text = "Editar";
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnSalvar
             // 
@@ -226,6 +232,7 @@
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnCancelar
             // 
@@ -239,6 +246,7 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // txtPesquisar
             // 
@@ -273,6 +281,7 @@
             dgvSituacaoAtendimento.Name = "dgvSituacaoAtendimento";
             dgvSituacaoAtendimento.Size = new Size(808, 150);
             dgvSituacaoAtendimento.TabIndex = 10;
+            dgvSituacaoAtendimento.CellDoubleClick += dgvSituacaoAtendimento_CellDoubleClick;
             // 
             // btnPesquisar
             // 
