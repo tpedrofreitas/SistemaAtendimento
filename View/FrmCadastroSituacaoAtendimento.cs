@@ -35,5 +35,28 @@ namespace SistemaAtendimento.View
         {
             dgvSituacaoAtendimento.DataSource = situacaoatendimentos;
         }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            SituacaoAtendimentos situacaoAtendimentos  = new SituacaoAtendimentos();
+            {
+               // Nome = txtNome.Text,
+               // Cor = txtCor.Text,
+                 // Ativo = rdbAtivo.Checked,
+            };
+          //  if (!ValidarDados(situacaoAtendimentos))
+              //  return;
+
+           // if (String.IsNullOrEmpty(txtCodigo.Text))
+            {
+                //_situacaoAtendimentosController.Salvar(situacaoAtendimentos);
+            }
+          //  else
+            {
+             //   situacaoAtendimentos.Id = Convert.ToInt32(txtCodigo.Text);
+              //  _situacaoAtendimentoController.Atualizar(situacaoAtendimentos);
+            }
+
+        }
     }
 }

@@ -107,6 +107,12 @@ namespace SistemaAtendimento.View
                 txtSenha.Text = linhaSelicionada.Cells["Senha"].Value.ToString();
                 cbxPerfil.Text = linhaSelicionada.Cells["Perfil"].Value.ToString();
                 txtEmail.Text = linhaSelicionada.Cells["Email"].Value.ToString();
+
+
+                btnEditar.Enabled = true;
+                btnNovo.Enabled = false;
+                btnCancelar.Enabled = true;
+                btnExcluir.Enabled = true;
             }
         }
 
