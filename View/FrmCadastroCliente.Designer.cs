@@ -544,6 +544,7 @@
             btnPesquisar.TabIndex = 21;
             btnPesquisar.TextAlign = ContentAlignment.MiddleRight;
             btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
             // 
             // grbListaClientes
             // 

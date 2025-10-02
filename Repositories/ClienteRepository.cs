@@ -11,7 +11,7 @@ namespace SistemaAtendimento.Repositories
 {
     public class ClienteRepository
     {
-        public List<Clientes> Listar()
+        public List<Clientes> Listar(string termo = "")
         {
             var Clientes = new List<Clientes>();
 
@@ -19,8 +19,19 @@ namespace SistemaAtendimento.Repositories
             {
                 string sql = "SELECT * FROM clientes";
 
+                if (!string.IsNullOrEmpty(termo))
+                {
+                    sql = "SELECT * FROM clientes where nome LIKE @termo OR email LIKE @termo";
+                }
+
                 using (var comando = new SqlCommand(sql, conexao))
                 {
+                    if (!string.IsNullOrEmpty(termo))
+                    {
+                        comando.Parameters.AddWithValue("@termo","%"+termo+"%");
+                    }
+
+
                     conexao.Open();
 
                     using (var linhas = comando.ExecuteReader())

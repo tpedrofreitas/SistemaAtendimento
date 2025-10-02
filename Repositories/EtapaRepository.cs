@@ -11,14 +11,27 @@ namespace SistemaAtendimento.Repositories
 {
     public class EtapaRepository
     {
-        public List<Etapas> Listar()
+        public List<Etapas> Listar(string termo = "")
         {
             var Etapas = new List<Etapas>();
             using (var conexao = ConexaoDB.GetConexao())
             {
                 string sql = "SELECT * FROM etapas";
-                using (var comando = new SqlCommand(sql, conexao))
+
+                if (!string.IsNullOrEmpty(termo))
                 {
+                    sql = "SELECT * FROM clientes where nome LIKE @termo OR email LIKE @termo";
+                }
+                using (var comando = new SqlCommand(sql, conexao))
+                   
+                {
+                    if (!string.IsNullOrEmpty(termo))
+                    {
+                        comando.Parameters.AddWithValue("@termo", "%" + termo + "%");
+                    }
+
+
+
                     conexao.Open();
                     using (var linhas = comando.ExecuteReader())
                     {

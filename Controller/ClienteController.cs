@@ -18,12 +18,12 @@ namespace SistemaAtendimento.Controller
             _clienteRepository = new ClienteRepository();
         }
 
-        public void ListarClientes()
+        public void ListarClientes(string termo = "")
         {
             try
             {
 
-                var listaClientes = _clienteRepository.Listar();
+                var listaClientes = _clienteRepository.Listar(termo);
 
                 _frmCadastroCliente.ExibirClientes(listaClientes);
                

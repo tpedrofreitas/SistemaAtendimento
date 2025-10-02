@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SistemaAtendimento.Controller;
 using SistemaAtendimento.Model;
 using static System.Net.WebRequestMethods;
@@ -317,21 +318,30 @@ namespace SistemaAtendimento
             {
                 cep = cep.Replace("-", "").Trim();
 
+
                 using (HttpClient client = new HttpClient())
                 {
                     string url = $"https://viacep.com.br/ws/{cep}/json/";
 
                     var response = await client.GetAsync(url);
 
-                    if(response.IsSuccessStatusCode)
+                    if (response.IsSuccessStatusCode)
+
+
                     {
                         string json = await response.Content.ReadAsStringAsync();
 
                         dynamic? dadosEndereco = JsonConvert.DeserializeObject(json);
 
+                        if (dadosEndereco?["erro"] != null && (bool)dadosEndereco?["erro"])
+                        {
+                            ExibirMensagem("CEP não encontrado!");
+                            return;
+                        }
+
                         txtEndereco.Text = dadosEndereco?.logradouro;
                         txtBairro.Text = dadosEndereco?.bairro;
-                        txtCidade.Text= dadosEndereco?.localidade;
+                        txtCidade.Text = dadosEndereco?.localidade;
                         cbxEstado.Text = dadosEndereco?.uf;
 
                     }
@@ -348,10 +358,17 @@ namespace SistemaAtendimento
         {
             if (!string.IsNullOrEmpty(txtCep.Text))
             {
-               await BuscarEnderecoPorCep(txtCep.Text); 
+                await BuscarEnderecoPorCep(txtCep.Text);
 
 
             }
+
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            string termo = txtPesquisar.Text.Trim();
+            _clientesController.ListarClientes(termo);
         }
     }
 }
