@@ -296,6 +296,7 @@
             txtCodigo.ReadOnly = true;
             txtCodigo.Size = new Size(152, 23);
             txtCodigo.TabIndex = 1;
+            txtCodigo.TextChanged += txtCodigo_TextChanged;
             // 
             // label1
             // 

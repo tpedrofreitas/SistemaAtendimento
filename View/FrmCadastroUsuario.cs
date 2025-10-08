@@ -75,7 +75,7 @@ namespace SistemaAtendimento.View
             btnNovo.Enabled = false;
             btnSalvar.Enabled = true;
             btnCancelar.Enabled = true;
-       
+
             txtCodigo.Clear();
             txtNome.Clear();
             txtSenha.Clear();
@@ -169,6 +169,11 @@ namespace SistemaAtendimento.View
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             DesabilitarCampos();
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
