@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using SistemaAtendimento.Database;
 using SistemaAtendimento.Model;
 
@@ -19,8 +20,34 @@ namespace SistemaAtendimento.Repositories
 
                 if (string.IsNullOrEmpty(termo) && !string.IsNullOrEmpty(condicao))
                 {
-
+                    if(condicao == "Código do Atendimento")
+                    {
+                        sql += " WHERE id = @termo";
+                    }
+                    else if (condicao == "Nome do Cliente")
+                    {
+                        sql += " WHERE c.nome LIKE %termo%";
+                    }
+                    else
+                    {
+                        sql += " WHERE c.cpf_cnpj = @termo";
+                    }
                 }
+                using (var comando = new SqlCommand(sql, conexao))
+                {
+                    if (!string.IsNullOrEmpty(termo))
+                    {
+                        comando.Parameters.AddWithValue("termo",termo);
+                    }
+
+                    conexao.Open();
+
+                    using (var linhas = comando.ExecuteReader())
+                    {
+
+                    }
+                }
+                    
             }
             return lista;
         }

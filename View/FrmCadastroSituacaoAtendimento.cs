@@ -157,9 +157,6 @@ namespace SistemaAtendimento.View
             }
         }
 
-        private void txtCor_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

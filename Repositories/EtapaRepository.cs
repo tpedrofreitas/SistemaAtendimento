@@ -20,7 +20,7 @@ namespace SistemaAtendimento.Repositories
 
                 if (!string.IsNullOrEmpty(termo))
                 {
-                    sql = "SELECT * FROM clientes where nome LIKE @termo OR email LIKE @termo";
+                    sql = "SELECT * FROM etapas where nome LIKE @termo OR ordem LIKE @termo";
                 }
                 using (var comando = new SqlCommand(sql, conexao))
                    
