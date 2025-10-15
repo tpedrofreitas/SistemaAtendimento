@@ -16,5 +16,10 @@ namespace SistemaAtendimento.View
         {
             InitializeComponent();
         }
+
+        private void FrmConsultaAtendimento_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -87,6 +87,7 @@
             btnPesquisar.Size = new Size(48, 23);
             btnPesquisar.TabIndex = 28;
             btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
             // 
             // imlIcone
             // 
@@ -296,7 +297,6 @@
             txtCodigo.ReadOnly = true;
             txtCodigo.Size = new Size(152, 23);
             txtCodigo.TabIndex = 1;
-            txtCodigo.TextChanged += txtCodigo_TextChanged;
             // 
             // label1
             // 

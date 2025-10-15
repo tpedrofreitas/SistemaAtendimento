@@ -54,7 +54,6 @@ namespace SistemaAtendimento.Repositories
                                 Cidade = linhas["cidade"].ToString(),
                                 Estado = linhas["estado"].ToString(),
                                 Ativo = Convert.ToBoolean(linhas["ativo"])
-
                             });
                         }
                     }

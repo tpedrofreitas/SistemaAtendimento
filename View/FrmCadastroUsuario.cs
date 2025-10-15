@@ -22,11 +22,12 @@ namespace SistemaAtendimento.View
             _usuarioController = new UsuarioController(this);
 
         }
-
         private void FrmCadastroUsuario_Load(object sender, EventArgs e)
         {
             _usuarioController.ListarUsuarios();
         }
+
+
 
         public void ExibirMensagem(string mensagem)
         {
@@ -171,9 +172,10 @@ namespace SistemaAtendimento.View
             DesabilitarCampos();
         }
 
-        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        private void btnPesquisar_Click(object sender, EventArgs e)
         {
-
+            string termo = txtPesquisar.Text.Trim();
+            _usuarioController.ListarUsuarios(termo);
         }
     }
 }

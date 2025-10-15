@@ -117,6 +117,7 @@
             Controls.Add(dataGridView1);
             Name = "FrmConsultaAtendimento";
             Text = "Consulta de Atendimentos";
+            Load += FrmConsultaAtendimento_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

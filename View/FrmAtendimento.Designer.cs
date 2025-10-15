@@ -415,6 +415,7 @@
             Controls.Add(groupBox1);
             Name = "FrmAtendimento";
             Text = "Atendimento";
+            Load += FrmAtendimento_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

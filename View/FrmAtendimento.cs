@@ -20,7 +20,12 @@ namespace SistemaAtendimento.View
         private void btnPesquisarAtendimento_Click(object sender, EventArgs e)
         {
             FrmConsultaAtendimento frmConsultaAtendimento = new FrmConsultaAtendimento();
-            frmConsultaAtendimento.ShowDialog();    
+            frmConsultaAtendimento.ShowDialog();
+        }
+
+        private void FrmAtendimento_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
