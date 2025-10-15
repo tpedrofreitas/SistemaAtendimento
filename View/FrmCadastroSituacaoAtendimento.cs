@@ -22,6 +22,10 @@ namespace SistemaAtendimento.View
 
             DesabilitarCampos();
         }
+        private void FrmCadastroSituacaoAtendimento_Load(object sender, EventArgs e)
+        {
+            _situacaoatendimentoController.ListarSituacaoAtendimento();
+        }
 
 
         public void ExibirMensagem(string mensagem)
@@ -29,10 +33,7 @@ namespace SistemaAtendimento.View
             MessageBox.Show(mensagem);
         }
 
-        private void FrmCadastroSituacaoAtendimento_Load(object sender, EventArgs e)
-        {
-            _situacaoatendimentoController.ListarSituacaoAtendimento();
-        }
+
         public void ExibirSituacaoAtendimento(List<SituacaoAtendimentos> situacaoatendimentos)
         {
             dgvSituacaoAtendimento.DataSource = situacaoatendimentos;
@@ -155,6 +156,12 @@ namespace SistemaAtendimento.View
                 int id = Convert.ToInt32(txtCodigo.Text);
                 _situacaoatendimentoController.Excluir(id);
             }
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            string termo = txtPesquisar.Text.Trim();
+            _situacaoatendimentoController.ListarSituacaoAtendimento(termo);
         }
 
         

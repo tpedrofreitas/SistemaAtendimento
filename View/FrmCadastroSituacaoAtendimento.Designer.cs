@@ -130,7 +130,6 @@
             txtCor.ReadOnly = true;
             txtCor.Size = new Size(160, 23);
             txtCor.TabIndex = 1;
-            txtCor.TextChanged += txtCor_TextChanged;
             // 
             // lblNome
             // 
@@ -292,6 +291,7 @@
             btnPesquisar.Size = new Size(48, 23);
             btnPesquisar.TabIndex = 8;
             btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
             // 
             // FrmCadastroSituacaoAtendimento
             // 
