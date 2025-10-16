@@ -14,12 +14,14 @@ namespace SistemaAtendimento.Repositories
         public List<SituacaoAtendimentos> Listar(string termo = "")
         {
             var SituacaoAtendimento = new List<SituacaoAtendimentos>();
+
             using (var conexao = ConexaoDB.GetConexao())
             {
                 string sql = "SELECT * FROM situacao_atendimentos";
+
                 if (!string.IsNullOrEmpty(termo))
                 {
-                    sql = "SELECT * FROM clientes where nome LIKE @termo OR cor LIKE @termo";
+                    sql = "SELECT * FROM Situacao_atendimentos WHERE nome LIKE @termo";
                 }
                 using (var comando = new SqlCommand(sql, conexao))
                 {
@@ -28,6 +30,7 @@ namespace SistemaAtendimento.Repositories
                         comando.Parameters.AddWithValue("@termo", "%" + termo + "%");
                     }
                     conexao.Open();
+
                     using (var linhas = comando.ExecuteReader())
                     {
                         while (linhas.Read())
