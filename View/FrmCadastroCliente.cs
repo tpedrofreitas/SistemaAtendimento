@@ -103,24 +103,7 @@ namespace SistemaAtendimento
                 txtCpfCnpj.Focus();
                 return false;
             }
-            //else
-            //{
-            //    if (rdbFisica.Checked)
-            //    {
-            //        if (!ValidarCpf(txtCpfCnpj.Text))
-            //        {
-            //            ExibirMensagem("CPF inválido");
-            //            txtCpfCnpj.Focus();
-            //            return false;
-            //        }
-            //        else
-            //        {
-
-            //        }
-
-            //    }
-
-            //}
+            
 
             if (string.IsNullOrWhiteSpace(txtCep.Text))
             {

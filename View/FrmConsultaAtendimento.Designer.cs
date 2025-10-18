@@ -30,24 +30,25 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmConsultaAtendimento));
-            dataGridView1 = new DataGridView();
+            dgvConsultaAtendimento = new DataGridView();
             imageList1 = new ImageList(components);
             groupBox1 = new GroupBox();
             label2 = new Label();
-            comboBox1 = new ComboBox();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            cbxFiltro = new ComboBox();
+            btnPesquisar = new Button();
+            txtFiltro = new TextBox();
+            imageList2 = new ImageList(components);
+            ((System.ComponentModel.ISupportInitialize)dgvConsultaAtendimento).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvConsultaAtendimento
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(16, 80);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(632, 288);
-            dataGridView1.TabIndex = 0;
+            dgvConsultaAtendimento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvConsultaAtendimento.Location = new Point(16, 80);
+            dgvConsultaAtendimento.Name = "dgvConsultaAtendimento";
+            dgvConsultaAtendimento.Size = new Size(632, 288);
+            dgvConsultaAtendimento.TabIndex = 0;
             // 
             // imageList1
             // 
@@ -60,9 +61,9 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(comboBox1);
-            groupBox1.Controls.Add(button1);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(cbxFiltro);
+            groupBox1.Controls.Add(btnPesquisar);
+            groupBox1.Controls.Add(txtFiltro);
             groupBox1.Location = new Point(16, 16);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(624, 56);
@@ -79,34 +80,41 @@
             label2.TabIndex = 9;
             label2.Text = "Filtrar por:";
             // 
-            // comboBox1
+            // cbxFiltro
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Código do Atendimento", "Nome do Cliente", "CPF", "CNPJ" });
-            comboBox1.Location = new Point(8, 24);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(184, 23);
-            comboBox1.TabIndex = 8;
+            cbxFiltro.FormattingEnabled = true;
+            cbxFiltro.Items.AddRange(new object[] { "Código do Atendimento", "Nome do Cliente", "CPF", "CNPJ" });
+            cbxFiltro.Location = new Point(8, 24);
+            cbxFiltro.Name = "cbxFiltro";
+            cbxFiltro.Size = new Size(184, 23);
+            cbxFiltro.TabIndex = 8;
             // 
-            // button1
+            // btnPesquisar
             // 
-            button1.ImageAlign = ContentAlignment.BottomLeft;
-            button1.ImageIndex = 1;
-            button1.ImageList = imageList1;
-            button1.Location = new Point(512, 24);
-            button1.Name = "button1";
-            button1.Size = new Size(104, 24);
-            button1.TabIndex = 7;
-            button1.Text = "Pesquisar";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = true;
+            btnPesquisar.ImageAlign = ContentAlignment.BottomLeft;
+            btnPesquisar.ImageIndex = 1;
+            btnPesquisar.ImageList = imageList1;
+            btnPesquisar.Location = new Point(512, 24);
+            btnPesquisar.Name = "btnPesquisar";
+            btnPesquisar.Size = new Size(104, 24);
+            btnPesquisar.TabIndex = 7;
+            btnPesquisar.Text = "Pesquisar";
+            btnPesquisar.TextAlign = ContentAlignment.MiddleRight;
+            btnPesquisar.UseVisualStyleBackColor = true;
+            btnPesquisar.Click += btnPesquisar_Click;
             // 
-            // textBox1
+            // txtFiltro
             // 
-            textBox1.Location = new Point(224, 24);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(272, 23);
-            textBox1.TabIndex = 6;
+            txtFiltro.Location = new Point(224, 24);
+            txtFiltro.Name = "txtFiltro";
+            txtFiltro.Size = new Size(272, 23);
+            txtFiltro.TabIndex = 6;
+            // 
+            // imageList2
+            // 
+            imageList2.ColorDepth = ColorDepth.Depth32Bit;
+            imageList2.ImageSize = new Size(16, 16);
+            imageList2.TransparentColor = Color.Transparent;
             // 
             // FrmConsultaAtendimento
             // 
@@ -114,11 +122,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(667, 384);
             Controls.Add(groupBox1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvConsultaAtendimento);
             Name = "FrmConsultaAtendimento";
             Text = "Consulta de Atendimentos";
             Load += FrmConsultaAtendimento_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvConsultaAtendimento).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -126,12 +134,13 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvConsultaAtendimento;
         private ImageList imageList1;
         private GroupBox groupBox1;
         private Label label2;
-        private ComboBox comboBox1;
-        private Button button1;
-        private TextBox textBox1;
+        private ComboBox cbxFiltro;
+        private Button btnPesquisar;
+        private TextBox txtFiltro;
+        private ImageList imageList2;
     }
 }

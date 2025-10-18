@@ -16,7 +16,12 @@ namespace SistemaAtendimento.Repositories
             var lista = new List<Atendimentos>();
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"SELECT  a.*,c.nome AS cliente_nome,  u.nome AS usuario_nome,  s.nome AS situacao_nome,c.cpf_cnpj FROM atendimentos INNER JOIN clientes c ON c.id = a.cliente_id INNER JOIN usuarios u ON u.id = a.usuario_id,INNER JOIN situacao_atendimentos s ON s.id = a.situacao_atendimento_id";
+                string sql = @"SELECT  a.*,c.nome AS cliente_nome,  u.nome AS usuario_nome,  s.nome AS situacao_nome,c.cpf_cnpj 
+                    FROM atendimentos a 
+                    INNER JOIN clientes c ON c.id = a.cliente_id 
+                    INNER JOIN usuarios u ON u.id = a.usuario_id 
+                    INNER JOIN situacao_atendimentos s ON s.id = a.situacao_atendimento_id";
+
 
                 if (string.IsNullOrEmpty(termo) && !string.IsNullOrEmpty(condicao))
                 {
@@ -37,26 +42,31 @@ namespace SistemaAtendimento.Repositories
                 {
                     if (!string.IsNullOrEmpty(termo))
                     {
-                        comando.Parameters.AddWithValue("termo",termo);
+                        comando.Parameters.AddWithValue("@termo",termo);
                     }
 
                     conexao.Open();
 
                     using (var linhas = comando.ExecuteReader())
                     {
-                        lista.Add(new Atendimentos
+                        while(linhas.Read())
                         {
-                            Id = Convert.ToInt32(linhas["id"]),
-                            ClienteId = Convert.ToInt32(linhas["cliente_id"]),
-                            UsuarioId = Convert.ToInt32(linhas["usuario_id"]),
-                            DataAbertura = Convert.ToDateTime(linhas["data_abertura"]),
-                            DataFechamento = Convert.ToDateTime(linhas["data_fechamento"]),
-                            Observacao = linhas["observacao"].ToString(),
-                            SituacaoAtendimentoId = Convert.ToInt32(linhas["situacao_atendimento_id"]),
-                            ClienteNome = linhas["cliente_id"].ToString(),
-                            SituacaoAtendimentoNome = linhas["situacao_nome"].ToString(),
-                            UsuarioNome = linhas["usuario_nome"].ToString(),
-                        });
+                            lista.Add(new Atendimentos
+                            {
+                                Id = Convert.ToInt32(linhas["id"]),
+                                ClienteId = Convert.ToInt32(linhas["cliente_id"]),
+                                UsuarioId = Convert.ToInt32(linhas["usuario_id"]),
+                                Cpf_Cnpj = linhas["cpf_cnpj"].ToString(),
+                                DataAbertura = linhas["data_abertura"] as DateTime?,
+                                DataFechamento = linhas["data_fechamento"] as DateTime?,
+                                Observacao = linhas["observacao"].ToString(),
+                                SituacaoAtendimentoId = Convert.ToInt32(linhas["situacao_atendimento_id"]),
+                                ClienteNome = linhas["cliente_id"].ToString(),
+                                SituacaoAtendimentoNome = linhas["situacao_nome"].ToString(),
+                                UsuarioNome = linhas["usuario_nome"].ToString(),
+                            });
+                        }
+                        
                     }
                 }
                     
@@ -67,12 +77,13 @@ namespace SistemaAtendimento.Repositories
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"INSERT INTO atendimentos (cliente_id, usuario_id, data_abertura, data_fechamento,observacao, situacao_atendimento_id) VALUES (@cliente_id, @usuario_id, @data_abertura, @data_fechamento,@observacao, @situacao_atendimento_id)";
+                string sql = @"INSERT INTO atendimentos (cliente_id, usuario_id,cpf_cnpj, data_abertura, data_fechamento,observacao, situacao_atendimento_id) VALUES (@cliente_id, @usuario_id,@cpf_cnpj @data_abertura, @data_fechamento,@observacao, @situacao_atendimento_id)";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
                     comando.Parameters.AddWithValue("@cliente_id", atendimento.ClienteId);
                     comando.Parameters.AddWithValue("@usuario_id" , atendimento.UsuarioId);
+                    comando.Parameters.AddWithValue("@cpf_cnpj", atendimento.Cpf_Cnpj);
                     comando.Parameters.AddWithValue("@data_abertura", atendimento.DataAbertura);
                     comando.Parameters.AddWithValue("@data_fechamento", atendimento.DataFechamento);
                     comando.Parameters.AddWithValue("@observacao",atendimento.Observacao);
@@ -87,13 +98,14 @@ namespace SistemaAtendimento.Repositories
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"UPADE atendimentos SET (cliente_id=@cliente_id, usuario_id=@usuario_id, data_abertura=@data_abertura, data_fechamento=@data_fechamento,observacao=@observacao, situacao_atendimento_id=@situacao_atendimento_id WHERE id=@id ";
+                string sql = @"UPADE atendimentos SET (cliente_id=@cliente_id, usuario_id=@usuario_id,cpf_cnpj=@cpf_cnpj, data_abertura=@data_abertura, data_fechamento=@data_fechamento,observacao=@observacao, situacao_atendimento_id=@situacao_atendimento_id WHERE id=@id ";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
                     comando.Parameters.AddWithValue("id",atendimento.Id);
                     comando.Parameters.AddWithValue("@cliente_id", atendimento.ClienteId);
                     comando.Parameters.AddWithValue("@usuario_id", atendimento.UsuarioId);
+                    comando.Parameters.AddWithValue("@cpf_cnpj", atendimento.Cpf_Cnpj);
                     comando.Parameters.AddWithValue("@data_abertura", atendimento.DataAbertura);
                     comando.Parameters.AddWithValue("@data_fechamento", atendimento.DataFechamento);
                     comando.Parameters.AddWithValue("@observacao", atendimento.Observacao);
