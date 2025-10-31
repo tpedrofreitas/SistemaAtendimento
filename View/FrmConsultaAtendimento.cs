@@ -38,9 +38,14 @@ namespace SistemaAtendimento.View
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            string termo = txtFiltro?.Text?.Trim() ?? string.Empty;
+            string termo = txtFiltro.Text.Trim();
 
-            _consultaAtendimentoController.ListarAtendimento(termo);
+            string condicao = cbxFiltro.Text.Trim();
+
+           
+            _consultaAtendimentoController.ListarAtendimento(termo, condicao);
+
+
         }
     }
 }

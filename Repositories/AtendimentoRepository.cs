@@ -23,28 +23,45 @@ namespace SistemaAtendimento.Repositories
                     INNER JOIN situacao_atendimentos s ON s.id = a.situacao_atendimento_id";
 
 
-                if (string.IsNullOrEmpty(termo) && !string.IsNullOrEmpty(condicao))
+                if (!string.IsNullOrEmpty(termo) && !string.IsNullOrEmpty(condicao))
                 {
-                    if(condicao == "Código do Atendimento")
+                   
+                    if (condicao == "Código do Atendimento")
                     {
-                        sql += " WHERE id = @termo";
+                        sql += " WHERE a.id = @termo";
                     }
                     else if (condicao == "Nome do Cliente")
                     {
-                        sql += " WHERE c.nome LIKE %termo%";
+                        sql += " WHERE c.nome LIKE @termo";
                     }
                     else
                     {
-                        sql += " WHERE c.cpf_cnpj = @termo";
+                        sql += " WHERE c.cpf_cnpj LIKE @termo";
                     }
                 }
+               
                 using (var comando = new SqlCommand(sql, conexao))
                 {
-                    if (!string.IsNullOrEmpty(termo))
+                    if (!string.IsNullOrEmpty(termo) && !string.IsNullOrEmpty(condicao))
                     {
-                        comando.Parameters.AddWithValue("@termo",termo);
+                        if (condicao == "Código do Atendimento")
+                        {
+                            if (int.TryParse(termo, out int codigo))
+                            {
+                                comando.Parameters.AddWithValue("@termo", codigo);
+                            }
+
+                        }
+                        else
+                        {
+                            comando.Parameters.AddWithValue("@termo", "%" + termo + "%");
+                        }
                     }
 
+
+
+
+                 
                     conexao.Open();
 
                     using (var linhas = comando.ExecuteReader())
@@ -61,7 +78,7 @@ namespace SistemaAtendimento.Repositories
                                 DataFechamento = linhas["data_fechamento"] as DateTime?,
                                 Observacao = linhas["observacao"].ToString(),
                                 SituacaoAtendimentoId = Convert.ToInt32(linhas["situacao_atendimento_id"]),
-                                ClienteNome = linhas["cliente_id"].ToString(),
+                                ClienteNome = linhas["cliente_nome"].ToString(),
                                 SituacaoAtendimentoNome = linhas["situacao_nome"].ToString(),
                                 UsuarioNome = linhas["usuario_nome"].ToString(),
                             });
