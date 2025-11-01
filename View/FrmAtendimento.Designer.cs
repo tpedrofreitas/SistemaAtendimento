@@ -255,6 +255,7 @@
             cbxNomeCliente.Name = "cbxNomeCliente";
             cbxNomeCliente.Size = new Size(382, 23);
             cbxNomeCliente.TabIndex = 3;
+            cbxNomeCliente.SelectedIndexChanged += cbxNomeCliente_SelectedIndexChanged;
             // 
             // label2
             // 

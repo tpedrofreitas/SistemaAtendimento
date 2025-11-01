@@ -14,12 +14,16 @@ namespace SistemaAtendimento.Controller
     {
         private FrmCadastroEtapa _frmCadastroEtapa;
         private EtapaRepository _etapaRepository;
+       
 
         public EtapaController(FrmCadastroEtapa view)
         {
             _frmCadastroEtapa = view;
             _etapaRepository = new EtapaRepository();
+           
         }
+        
+        
 
         public void ListarEtapas(string termo = "")
         {
