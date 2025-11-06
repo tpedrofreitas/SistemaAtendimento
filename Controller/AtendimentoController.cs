@@ -39,6 +39,18 @@ namespace SistemaAtendimento.Controller
         {
             return _situacaoAtendimentoRepository.Listar();
         }
+        public void Salvar(Atendimentos atendimentos)
+        {
+            try
+            {
+                _atendimentoRepository.Inserir(atendimentos);
+                _frmAtendimento.ExibirMensagem("Atendimento Salvo com Sucesso!");
+            }
+            catch (Exception ex)
+            {
+                _frmAtendimento.ExibirMensagem($"Erro ap Cadastrar o Atendimento : {ex.Message}");
+            }
+        }
     }
 
 }   
