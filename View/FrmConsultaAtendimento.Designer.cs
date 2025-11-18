@@ -47,8 +47,11 @@
             dgvConsultaAtendimento.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvConsultaAtendimento.Location = new Point(16, 80);
             dgvConsultaAtendimento.Name = "dgvConsultaAtendimento";
+            dgvConsultaAtendimento.ReadOnly = true;
+            dgvConsultaAtendimento.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvConsultaAtendimento.Size = new Size(632, 288);
             dgvConsultaAtendimento.TabIndex = 0;
+            dgvConsultaAtendimento.CellDoubleClick += dgvConsultaAtendimento_CellDoubleClick;
             // 
             // imageList1
             // 

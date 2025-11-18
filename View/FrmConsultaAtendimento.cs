@@ -20,12 +20,13 @@ namespace SistemaAtendimento.View
         {
             InitializeComponent();
             _consultaAtendimentoController = new ConsultaAtendimentoController(this);
+           
         }
 
         private void FrmConsultaAtendimento_Load(object sender, EventArgs e)
         {
-            _consultaAtendimentoController.ListarAtendimento();
-        }
+            _consultaAtendimentoController.ListarAtendimento();         
+        }        
 
         public void ExibirMensagem(string mensagem)
         {
@@ -42,8 +43,25 @@ namespace SistemaAtendimento.View
 
             string condicao = cbxFiltro.Text.Trim();
 
-           
-            _consultaAtendimentoController.ListarAtendimento(termo, condicao);
+
+            _consultaAtendimentoController.ListarAtendimento(termo, condicao);         
+
+        }
+       
+        private void dgvConsultaAtendimento_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                int id = (int) dgvConsultaAtendimento.Rows[e.RowIndex].Cells["Id"].Value;
+
+                // MessageBox.Show(id.ToString());
+
+                FrmAtendimento frmAtendimento = new FrmAtendimento(id);
+                 frmAtendimento.Show();
+
+                this.Close();
+
+            }
 
 
         }

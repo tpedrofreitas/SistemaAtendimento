@@ -15,17 +15,22 @@ namespace SistemaAtendimento.View
     public partial class FrmAtendimento : Form
     {
         private AtendimentoController _atendimentoController;
-        public FrmAtendimento()
+
+        private int? _atendimentoId;
+        public FrmAtendimento(int? atendimentoId = null)
         {
             InitializeComponent();
             _atendimentoController = new AtendimentoController(this);
+
+            _atendimentoId = atendimentoId;
 
         }
 
         private void btnPesquisarAtendimento_Click(object sender, EventArgs e)
         {
-            FrmConsultaAtendimento frmConsultaAtendimento = new FrmConsultaAtendimento();
-            frmConsultaAtendimento.ShowDialog();
+             FrmConsultaAtendimento frmConsultaAtendimento = new FrmConsultaAtendimento();
+             frmConsultaAtendimento.ShowDialog();
+           
         }
 
         private void CarregarClientes()
@@ -46,7 +51,37 @@ namespace SistemaAtendimento.View
             CarregarClientes();
             CarregarEtapas();
             CarregarSituacaoAtendimentos();
+
+            if(_atendimentoId.HasValue)
+            {
+              var atendimento =  _atendimentoController.BuscarAtendimentoPorId(_atendimentoId.Value);
+
+                if(atendimento != null)
+                {
+                    //Preencher campos
+                    PreencherCampos(atendimento);
+                }
+            }
+
         }
+        private  void PreencherCampos(Atendimentos atendimento)
+        {
+            txtCodigoAtendimento.Text = atendimento.Id.ToString();
+            txtCodigoCliente.Text = atendimento.ClienteId.ToString();
+            cbxNomeCliente.SelectedValue = atendimento.ClienteId;
+            cbxSituacaoAtendimento.SelectedValue = atendimento.SituacaoAtendimentoId;
+            dtpAberturaAtendimento.Value = atendimento.DataAbertura ?? DateTime.Now;
+            txtObservacaoAtendimento.Text = atendimento.Observacao;
+            btnSalvar.Enabled = true;
+            btnExcluir.Enabled = true;
+            btnCancelar.Enabled = true;
+            cbxSituacaoAtendimento.Enabled = true;
+            txtObservacaoAtendimento.Enabled = false;
+            btnFinalizar.Enabled = true;
+
+        }
+
+
         private void CarregarEtapas()
         {
             var etapas = _atendimentoController.ListarEtapas();
