@@ -30,7 +30,7 @@ namespace SistemaAtendimento
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCadastroCliente frmCadastroCliente = new FrmCadastroCliente();
-            frmCadastroCliente.ShowDialog();
+            frmCadastroCliente.Show();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,19 +46,19 @@ namespace SistemaAtendimento
         private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCadastroUsuario frmCadastroUsuario = new FrmCadastroUsuario();
-            frmCadastroUsuario.ShowDialog();
+            frmCadastroUsuario.Show();
         }
 
         private void etapasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCadastroEtapa frmCadastroEtapa = new FrmCadastroEtapa();
-            frmCadastroEtapa.ShowDialog();
+            frmCadastroEtapa.Show();
         }
 
         private void statusAtendimentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCadastroSituacaoAtendimento frmCadastroSitucaoAtendimento = new FrmCadastroSituacaoAtendimento();
-            frmCadastroSitucaoAtendimento.ShowDialog();
+            frmCadastroSitucaoAtendimento.Show();
         }
 
         private void FrmTelaPrincipal_Load(object sender, EventArgs e)
