@@ -9,61 +9,56 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SistemaAtendimento.Controller;
 using SistemaAtendimento.Model;
-using SistemaAtendimento.Repositories;
 
 namespace SistemaAtendimento.View
 {
     public partial class FrmConsultaAtendimento : Form
     {
         private ConsultaAtendimentoController _consultaAtendimentoController;
+
         public FrmConsultaAtendimento()
         {
             InitializeComponent();
             _consultaAtendimentoController = new ConsultaAtendimentoController(this);
-           
         }
 
         private void FrmConsultaAtendimento_Load(object sender, EventArgs e)
         {
-            _consultaAtendimentoController.ListarAtendimento();         
-        }        
+            _consultaAtendimentoController.ListarAtendimento();
+        }
 
         public void ExibirMensagem(string mensagem)
         {
             MessageBox.Show(mensagem);
         }
-        public void ExibirAtendimento(List<Atendimentos> atendimentos)
+
+        public void ExibirAtendimentos(List<Atendimentos> atendimentos)
         {
             dgvConsultaAtendimento.DataSource = atendimentos;
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
+
             string termo = txtFiltro.Text.Trim();
-
             string condicao = cbxFiltro.Text.Trim();
-
-
-            _consultaAtendimentoController.ListarAtendimento(termo, condicao);         
-
+            _consultaAtendimentoController.ListarAtendimento(termo, condicao);
         }
-       
+
         private void dgvConsultaAtendimento_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+         
+
+            if (e.RowIndex >= 0)
             {
-                int id = (int) dgvConsultaAtendimento.Rows[e.RowIndex].Cells["Id"].Value;
+                int id  = (int)dgvConsultaAtendimento.Rows[e.RowIndex].Cells["Id"].Value;
 
-                // MessageBox.Show(id.ToString());
-
-                FrmAtendimento frmAtendimento = new FrmAtendimento(id);
-                 frmAtendimento.Show();
-
+                //MessageBox.Show(id.ToString());
                 this.Close();
-
-            }
-
-
+                var atendimento = new FrmAtendimento(id);
+                atendimento.Show();
+             }
+           
         }
     }
 }

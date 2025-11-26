@@ -121,7 +121,6 @@
             grbDadosCliente.TabIndex = 0;
             grbDadosCliente.TabStop = false;
             grbDadosCliente.Text = "Dados do Cliente";
-            grbDadosCliente.Enter += grbDadosCliente_Enter;
             // 
             // lblEstado
             // 
@@ -316,7 +315,7 @@
             // rdbJuridica
             // 
             rdbJuridica.AutoSize = true;
-            rdbJuridica.Location = new Point(72, 3);
+            rdbJuridica.Location = new Point(63, 3);
             rdbJuridica.Name = "rdbJuridica";
             rdbJuridica.Size = new Size(65, 19);
             rdbJuridica.TabIndex = 1;
@@ -433,12 +432,13 @@
             // 
             // btnNovo
             // 
+            btnNovo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNovo.ImageAlign = ContentAlignment.MiddleLeft;
             btnNovo.ImageIndex = 3;
             btnNovo.ImageList = imlIcones;
-            btnNovo.Location = new Point(24, 352);
+            btnNovo.Location = new Point(27, 344);
             btnNovo.Name = "btnNovo";
-            btnNovo.Size = new Size(75, 32);
+            btnNovo.Size = new Size(76, 34);
             btnNovo.TabIndex = 15;
             btnNovo.Text = "Novo";
             btnNovo.TextAlign = ContentAlignment.MiddleRight;
@@ -454,18 +454,19 @@
             imlIcones.Images.SetKeyName(1, "icone-editar.png");
             imlIcones.Images.SetKeyName(2, "icone-excluir.png");
             imlIcones.Images.SetKeyName(3, "icone-novo.png");
-            imlIcones.Images.SetKeyName(4, "icone-salvar.png");
-            imlIcones.Images.SetKeyName(5, "icones-pesquisar.png");
+            imlIcones.Images.SetKeyName(4, "icone-pesquisar.png");
+            imlIcones.Images.SetKeyName(5, "icone-salvar.png");
             // 
             // btnEditar
             // 
             btnEditar.Enabled = false;
+            btnEditar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEditar.ImageAlign = ContentAlignment.MiddleLeft;
             btnEditar.ImageIndex = 1;
             btnEditar.ImageList = imlIcones;
-            btnEditar.Location = new Point(104, 352);
+            btnEditar.Location = new Point(109, 345);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(75, 32);
+            btnEditar.Size = new Size(82, 33);
             btnEditar.TabIndex = 16;
             btnEditar.Text = "Editar";
             btnEditar.TextAlign = ContentAlignment.MiddleRight;
@@ -475,12 +476,13 @@
             // btnSalvar
             // 
             btnSalvar.Enabled = false;
+            btnSalvar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalvar.ImageIndex = 4;
+            btnSalvar.ImageIndex = 5;
             btnSalvar.ImageList = imlIcones;
-            btnSalvar.Location = new Point(184, 352);
+            btnSalvar.Location = new Point(198, 346);
             btnSalvar.Name = "btnSalvar";
-            btnSalvar.Size = new Size(75, 32);
+            btnSalvar.Size = new Size(75, 33);
             btnSalvar.TabIndex = 17;
             btnSalvar.Text = "Salvar";
             btnSalvar.TextAlign = ContentAlignment.MiddleRight;
@@ -493,9 +495,9 @@
             btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
             btnExcluir.ImageIndex = 2;
             btnExcluir.ImageList = imlIcones;
-            btnExcluir.Location = new Point(264, 352);
+            btnExcluir.Location = new Point(280, 346);
             btnExcluir.Name = "btnExcluir";
-            btnExcluir.Size = new Size(75, 32);
+            btnExcluir.Size = new Size(75, 33);
             btnExcluir.TabIndex = 18;
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
@@ -505,12 +507,14 @@
             // btnCancelar
             // 
             btnCancelar.Enabled = false;
+            btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.ImageIndex = 0;
             btnCancelar.ImageList = imlIcones;
-            btnCancelar.Location = new Point(360, 352);
+            btnCancelar.Location = new Point(361, 346);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(75, 32);
+            btnCancelar.RightToLeft = RightToLeft.No;
+            btnCancelar.Size = new Size(87, 33);
             btnCancelar.TabIndex = 19;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextAlign = ContentAlignment.MiddleRight;
@@ -519,10 +523,12 @@
             // 
             // txtPesquisar
             // 
-            txtPesquisar.Location = new Point(488, 352);
+            txtPesquisar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPesquisar.Location = new Point(486, 355);
             txtPesquisar.Name = "txtPesquisar";
-            txtPesquisar.Size = new Size(233, 23);
+            txtPesquisar.Size = new Size(233, 25);
             txtPesquisar.TabIndex = 20;
+            
             // 
             // lblPesquisar
             // 
@@ -535,14 +541,13 @@
             // 
             // btnPesquisar
             // 
-            btnPesquisar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPesquisar.ImageIndex = 5;
+            btnPesquisar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnPesquisar.ImageIndex = 4;
             btnPesquisar.ImageList = imlIcones;
-            btnPesquisar.Location = new Point(728, 352);
+            btnPesquisar.Location = new Point(747, 350);
             btnPesquisar.Name = "btnPesquisar";
-            btnPesquisar.Size = new Size(35, 29);
+            btnPesquisar.Size = new Size(52, 32);
             btnPesquisar.TabIndex = 21;
-            btnPesquisar.TextAlign = ContentAlignment.MiddleRight;
             btnPesquisar.UseVisualStyleBackColor = true;
             btnPesquisar.Click += btnPesquisar_Click;
             // 

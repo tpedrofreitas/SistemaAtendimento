@@ -14,29 +14,41 @@ namespace SistemaAtendimento.View
 {
     public partial class FrmCadastroSituacaoAtendimento : Form
     {
-        private SituacaoAtendimentoController _situacaoatendimentoController;
+        private SituacaoAtendimentoController _situacaoAtendimentoController;
+
         public FrmCadastroSituacaoAtendimento()
         {
+            _situacaoAtendimentoController = new SituacaoAtendimentoController(this);
             InitializeComponent();
-            _situacaoatendimentoController = new SituacaoAtendimentoController(this);
-
-            DesabilitarCampos();
         }
-        private void FrmCadastroSituacaoAtendimento_Load(object sender, EventArgs e)
-        {
-            _situacaoatendimentoController.ListarSituacaoAtendimento();
-        }
-
 
         public void ExibirMensagem(string mensagem)
         {
             MessageBox.Show(mensagem);
         }
 
-
-        public void ExibirSituacaoAtendimento(List<SituacaoAtendimentos> situacaoatendimentos)
+        internal void ExibirSituacaoAtendimento(List<SituacaoAtendimentos> situacaoAtendimentos)
         {
-            dgvSituacaoAtendimento.DataSource = situacaoatendimentos;
+            dgvSituacoesAtendimento.DataSource = situacaoAtendimentos;
+        }
+
+        private void FrmCadastroSituacaoAtendimento_Load(object sender, EventArgs e)
+        {
+            _situacaoAtendimentoController.ListarSituacaoAtendimento();
+
+            dgvSituacoesAtendimento.Columns["Id"].HeaderText = "Código";
+            dgvSituacoesAtendimento.Columns["Nome"].HeaderText = "Nome da Situação";
+            dgvSituacoesAtendimento.Columns["Cor"].HeaderText = "Cor";
+            dgvSituacoesAtendimento.Columns["Ativo"].HeaderText = "Ativo";
+
+            // Preenche o grid com ajuste automático
+            dgvSituacoesAtendimento.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+
+            // Ajuste individual:
+            dgvSituacoesAtendimento.Columns["Id"].Width = 60;
+            dgvSituacoesAtendimento.Columns["Nome"].Width = 200;
+            dgvSituacoesAtendimento.Columns["Cor"].Width = 100;
+            dgvSituacoesAtendimento.Columns["Ativo"].Width = 60;
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -46,67 +58,65 @@ namespace SistemaAtendimento.View
                 Nome = txtNome.Text,
                 Cor = txtCor.Text,
                 Ativo = rdbAtivo.Checked,
-            }
-            ;
-            if (!ValidarDados(situacaoAtendimentos))
+            };
+
+            if (!ValidaDados(situacaoAtendimentos))
                 return;
 
-            if (String.IsNullOrEmpty(txtCodigo.Text))
-            {
-                _situacaoatendimentoController.Salvar(situacaoAtendimentos);
-            }
+            if (string.IsNullOrEmpty(txtCodigo.Text))
+                _situacaoAtendimentoController.Salvar(situacaoAtendimentos);
             else
             {
                 situacaoAtendimentos.Id = Convert.ToInt32(txtCodigo.Text);
-                _situacaoatendimentoController.Atualizar(situacaoAtendimentos);
+                _situacaoAtendimentoController.Atualizar(situacaoAtendimentos);
             }
-
         }
-        public bool ValidarDados(SituacaoAtendimentos situacaoAtendimentos)
+
+        private bool ValidaDados(SituacaoAtendimentos situacaoAtendimentos)
         {
-            if (string.IsNullOrWhiteSpace(txtNome.Text))
+            if (string.IsNullOrWhiteSpace(situacaoAtendimentos.Nome))
             {
-                ExibirMensagem("O Campo nome é Obrigatório");
+                ExibirMensagem("O campo Nome é obrigatório.");
                 txtNome.Focus();
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtCor.Text))
+            if (string.IsNullOrWhiteSpace(situacaoAtendimentos.Cor))
             {
-                ExibirMensagem("O Campo cor é Obrigatório");
+                ExibirMensagem("O campo Cor é obrigatório.");
                 txtCor.Focus();
                 return false;
             }
             return true;
         }
-        private void HabilitarCampos()
+
+        public void HabilitarCampos()
         {
             txtNome.ReadOnly = false;
             txtCor.ReadOnly = false;
-
-            btnNovo.Enabled = false;
+            pnlSituacao.Enabled = true;
             btnSalvar.Enabled = true;
             btnCancelar.Enabled = true;
         }
-        private void LimparCampos()
+
+        public void LimparCampos()
         {
-            txtCodigo.Clear();
             txtNome.Clear();
             txtCor.Clear();
             rdbAtivo.Checked = true;
-
+            txtNome.Focus();
         }
+
         public void DesabilitarCampos()
         {
             LimparCampos();
 
             txtNome.ReadOnly = true;
             txtCor.ReadOnly = true;
-
-            btnNovo.Enabled = true;
+            pnlSituacao.Enabled = false;
             btnSalvar.Enabled = false;
-            btnCancelar.Enabled = false;
             btnEditar.Enabled = false;
             btnExcluir.Enabled = false;
+            btnCancelar.Enabled = false;
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
@@ -119,26 +129,22 @@ namespace SistemaAtendimento.View
             DesabilitarCampos();
         }
 
-        private void dgvSituacaoAtendimento_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSituacoesAtendimento_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            // MessageBox.Show("Funcionou");
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow linhaSelecionada = dgvSituacaoAtendimento.Rows[e.RowIndex];
+                var situacaoAtendimento = (SituacaoAtendimentos)dgvSituacoesAtendimento.Rows[e.RowIndex].DataBoundItem;
+                txtCodigo.Text = situacaoAtendimento.Id.ToString();
+                txtNome.Text = situacaoAtendimento.Nome;
+                txtCor.Text = situacaoAtendimento.Cor;
+                rdbAtivo.Checked = situacaoAtendimento.Ativo;
+                rdbInativo.Checked = !situacaoAtendimento.Ativo;
 
-                txtCodigo.Text = linhaSelecionada.Cells["Id"].Value.ToString();
-                txtNome.Text = linhaSelecionada.Cells["Nome"].Value.ToString();
-                txtCor.Text = linhaSelecionada.Cells["Cor"].Value.ToString();
-                rdbInativo.Checked = !Convert.ToBoolean(linhaSelecionada.Cells["Ativo"].Value);
-                rdbInativo.Checked = !Convert.ToBoolean(linhaSelecionada.Cells["Ativo"].Value);
-
-
-                btnEditar.Enabled = true;
                 btnNovo.Enabled = false;
-                btnCancelar.Enabled = true;
+                btnEditar.Enabled = true;
                 btnExcluir.Enabled = true;
+                btnCancelar.Enabled = true;
             }
-
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -149,21 +155,26 @@ namespace SistemaAtendimento.View
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("Deseja Excluir esta situacao_atendimento", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (resultado == DialogResult.Yes)
+            if (string.IsNullOrEmpty(txtCodigo.Text))
             {
-                int id = Convert.ToInt32(txtCodigo.Text);
-                _situacaoatendimentoController.Excluir(id);
+                ExibirMensagem("Nenhum situação de atendimento selecionado para exclusão.");
+                return;
+            }
+            else
+            {
+                DialogResult resultado = MessageBox.Show($"Deseja Excluir esta Situação de Atendimento?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.Yes)
+                {
+                    int id = Convert.ToInt32(txtCodigo.Text);
+                    _situacaoAtendimentoController.Excluir(id);
+                }
             }
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string termo = txtPesquisar.Text.Trim();
-            _situacaoatendimentoController.ListarSituacaoAtendimento(termo);
+            _situacaoAtendimentoController.ListarSituacaoAtendimento(termo);
         }
-
-        
     }
 }

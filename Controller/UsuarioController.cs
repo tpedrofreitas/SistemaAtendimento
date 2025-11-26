@@ -9,12 +9,11 @@ using SistemaAtendimento.View;
 
 namespace SistemaAtendimento.Controller
 {
-    public class UsuarioController
+    internal class UsuarioController
     {
         private FrmCadastroUsuario _frmCadastroUsuario;
         private UsuarioRepository _usuarioRepository;
-
-        public UsuarioController(FrmCadastroUsuario view)
+        public UsuarioController(FrmCadastroUsuario view) //Método Construtor
         {
             _frmCadastroUsuario = view;
             _usuarioRepository = new UsuarioRepository();
@@ -29,68 +28,55 @@ namespace SistemaAtendimento.Controller
             }
             catch (Exception ex)
             {
-                _frmCadastroUsuario.ExibirMensagem($"Erro ao Carregar usuarios: {ex.Message}");
+                _frmCadastroUsuario.ExibirMensagem($"Erro ao carregar os clientes: {ex.Message}");
             }
         }
+
         public void Salvar(Usuarios usuario)
         {
-
-
             try
             {
                 _usuarioRepository.Inserir(usuario);
-                _frmCadastroUsuario.ExibirMensagem("Usuário cadastrado com Sucesso!");
-                //Atualizar DataGrid
+                _frmCadastroUsuario.ExibirMensagem($"Etapa cadastrada com sucesso!");
+
                 ListarUsuarios();
 
                 _frmCadastroUsuario.DesabilitarCampos();
-
-
             }
             catch (Exception ex)
             {
-                _frmCadastroUsuario.ExibirMensagem($"Erro ao Cadastrar o usuário: {ex.Message}");
+                _frmCadastroUsuario.ExibirMensagem($"Erro ao Cadastrar Etapa: {ex.Message}");
             }
-
-
         }
+
         public void Atualizar(Usuarios usuario)
         {
-
-
             try
             {
                 _usuarioRepository.Atualizar(usuario);
-                _frmCadastroUsuario.ExibirMensagem("Usuário Atualizado com Sucesso!");
-                //Atualizar DataGrid
+                _frmCadastroUsuario.ExibirMensagem($"Etapa atualizada com sucesso!");
                 ListarUsuarios();
-
                 _frmCadastroUsuario.DesabilitarCampos();
-
-
             }
             catch (Exception ex)
             {
-                _frmCadastroUsuario.ExibirMensagem($"Erro ao Atualizar o Usuário: {ex.Message}");
+                _frmCadastroUsuario.ExibirMensagem($"Erro ao atualizar Etapa: {ex.Message}");
             }
-
-
         }
+
         public void Excluir(int id)
         {
             try
             {
                 _usuarioRepository.Excluir(id);
-                _frmCadastroUsuario.ExibirMensagem("Usuário Excluido com Sucesso!");
+                _frmCadastroUsuario.ExibirMensagem($"Etapa excluída com sucesso!");
                 ListarUsuarios();
-
                 _frmCadastroUsuario.DesabilitarCampos();
             }
             catch (Exception ex)
             {
-                _frmCadastroUsuario.ExibirMensagem($"Erro ao Excluir o Usuário: {ex.Message}");
+                _frmCadastroUsuario.ExibirMensagem($"Erro ao excluir Etapa: {ex.Message}");
             }
         }
-
     }
 }

@@ -7,13 +7,14 @@ using Microsoft.Data.SqlClient;
 using SistemaAtendimento.Database;
 using SistemaAtendimento.Model;
 
+
 namespace SistemaAtendimento.Repositories
 {
     public class ClienteRepository
     {
         public List<Clientes> Listar(string termo = "")
         {
-            var Clientes = new List<Clientes>();
+            var clientes = new List<Clientes>();
 
             using (var conexao = ConexaoDB.GetConexao())
             {
@@ -23,14 +24,15 @@ namespace SistemaAtendimento.Repositories
                 {
                     sql = "SELECT * FROM clientes where nome LIKE @termo OR email LIKE @termo";
                 }
-
+              
                 using (var comando = new SqlCommand(sql, conexao))
                 {
+
                     if (!string.IsNullOrEmpty(termo))
                     {
+                       
                         comando.Parameters.AddWithValue("@termo","%"+termo+"%");
                     }
-
 
                     conexao.Open();
 
@@ -38,7 +40,7 @@ namespace SistemaAtendimento.Repositories
                     {
                         while (linhas.Read())
                         {
-                            Clientes.Add(new Clientes() { 
+                            clientes.Add(new Clientes() { 
                                 Id = Convert.ToInt32(linhas["id"]),
                                 Nome = linhas["nome"].ToString(),
                                 Email = linhas["email"].ToString(),
@@ -48,7 +50,7 @@ namespace SistemaAtendimento.Repositories
                                 Celular = linhas["celular"].ToString(),
                                 Cep = linhas["cep"].ToString(),
                                 Endereco = linhas["endereco"].ToString(),
-                                Numero = linhas["numero"].ToString(),
+                                Numero = linhas["Numero"].ToString(),
                                 Complemento = linhas["complemento"].ToString(),
                                 Bairro = linhas["bairro"].ToString(),
                                 Cidade = linhas["cidade"].ToString(),
@@ -57,21 +59,21 @@ namespace SistemaAtendimento.Repositories
                             });
                         }
                     }
-                                 
 
                 }
 
             }
-                return Clientes;
+
+            return clientes;
         }
+
         public void Inserir(Clientes cliente)
         {
-            using(var conexao = ConexaoDB.GetConexao())
-
+            using(var conexao = ConexaoDB.GetConexao()) 
             {
-                string sql = "INSERT INTO clientes (nome,email,cpf_cnpj,tipo_pessoa,telefone,celular,cep,endereco,numero,complemento,bairro,cidade,estado,ativo)" +
-                    " VALUES (@nome,@email,@cpf_cnpj,@tipo_pessoa,@telefone,@celular,@cep,@endereco,@numero,@complemento,@bairro,@cidade,@estado,@ativo)";
-                using(var comando = new SqlCommand(sql, conexao))
+                string sql = "INSERT INTO clientes (nome,email, cpf_cnpj, tipo_pessoa, telefone, celular, cep, endereco, numero, complemento, bairro, cidade, estado, ativo) VALUES (@nome,@email, @cpf_cnpj, @tipo_pessoa, @telefone, @celular, @cep, @endereco, @numero, @complemento, @bairro, @cidade, @estado, @ativo)";
+                
+                using (var comando = new SqlCommand(sql, conexao)) 
                 {
                     comando.Parameters.AddWithValue("@nome", cliente.Nome);
                     comando.Parameters.AddWithValue("@email", cliente.Email);
@@ -86,12 +88,10 @@ namespace SistemaAtendimento.Repositories
                     comando.Parameters.AddWithValue("@bairro", cliente.Bairro);
                     comando.Parameters.AddWithValue("@cidade", cliente.Cidade);
                     comando.Parameters.AddWithValue("@estado", cliente.Estado);
-                    comando.Parameters.AddWithValue("@ativo", cliente.Ativo);
-
+                    comando.Parameters.AddWithValue("@ativo", cliente.Ativo);  
+                    
                     conexao.Open();
-                    comando.ExecuteNonQuery();
-
-
+                    comando.ExecuteNonQuery();                
                 }
             }
         }
@@ -99,13 +99,11 @@ namespace SistemaAtendimento.Repositories
         public void Atualizar(Clientes cliente)
         {
             using (var conexao = ConexaoDB.GetConexao())
-
             {
-                string sql = "UPDATE clientes SET nome=@nome,email=@email,cpf_cnpj=@cpf_cnpj,tipo_pessoa=@tipo_pessoa,telefone=@telefone,celular=@celular,cep=@cep,endereco=@endereco,numero=@numero,complemento=@complemento,bairro=@bairro,cidade=@cidade,estado=@estado,ativo=@ativo Where id=@id"; 
+                string sql = "UPDATE clientes SET nome=@nome,email=@email, cpf_cnpj=@cpf_cnpj, tipo_pessoa=@tipo_pessoa, telefone=@telefone, celular=@celular, cep=@cep, endereco=@endereco, numero=@numero, complemento=@complemento, bairro=@bairro, cidade=@cidade, estado=@estado, ativo=@ativo WHERE id=@id";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
-
                     comando.Parameters.AddWithValue("@id", cliente.Id);
                     comando.Parameters.AddWithValue("@nome", cliente.Nome);
                     comando.Parameters.AddWithValue("@email", cliente.Email);
@@ -124,29 +122,23 @@ namespace SistemaAtendimento.Repositories
 
                     conexao.Open();
                     comando.ExecuteNonQuery();
-
-
                 }
             }
-
-
         }
+
         public void Excluir(int id)
         {
             using (var conexao = ConexaoDB.GetConexao())
-
             {
                 string sql = "DELETE FROM clientes WHERE id=@id";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
-
-                    comando.Parameters.AddWithValue("@id",id);
+                    comando.Parameters.AddWithValue("@id", id);
                     conexao.Open();
                     comando.ExecuteNonQuery();
                 }
             }
         }
-
     }
 }

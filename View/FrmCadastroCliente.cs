@@ -4,40 +4,44 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SistemaAtendimento.Controller;
 using SistemaAtendimento.Model;
-using static System.Net.WebRequestMethods;
 
 namespace SistemaAtendimento
 {
     public partial class FrmCadastroCliente : Form
     {
-        private ClienteController _clientesController;
+        private ClienteController _clienteController;
+
         public FrmCadastroCliente()
         {
             InitializeComponent();
-            _clientesController = new ClienteController(this);
+            _clienteController = new ClienteController(this);
         }
 
-        private void FrmCadastroCliente_Load(object sender, EventArgs e)
-        {
-            _clientesController.ListarClientes();
-        }
+
+
 
         public void ExibirMensagem(string mensagem)
         {
             MessageBox.Show(mensagem);
+
         }
 
         public void ExibirClientes(List<Clientes> clientes)
         {
             dgvClientes.DataSource = clientes;
+        }
 
+        private void FrmCadastroCliente_Load(object sender, EventArgs e)
+        {
+            _clienteController.ListarClientes();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -63,88 +67,109 @@ namespace SistemaAtendimento
             if (!ValidarDados(cliente))
                 return;
 
-            if (String.IsNullOrEmpty(txtCodigo.Text))
+            if (string.IsNullOrEmpty(txtCodigo.Text))
             {
-                _clientesController.Salvar(cliente);
+                _clienteController.Salvar(cliente);
             }
             else
             {
                 cliente.Id = Convert.ToInt32(txtCodigo.Text);
-                _clientesController.Atualizar(cliente);
+                _clienteController.Atualizar(cliente);
             }
 
 
+
         }
+
         public bool ValidarDados(Clientes cliente)
         {
             if (string.IsNullOrWhiteSpace(txtNome.Text))
             {
-                ExibirMensagem("O Campo nome é Obrigatório");
+                ExibirMensagem("O Campo Nome é Obrigatório");
                 txtNome.Focus();
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                ExibirMensagem("O Campo email é Obrigatório");
+                ExibirMensagem("O Campo E-mail é Obrigatório");
                 txtEmail.Focus();
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtCpfCnpj.Text))
             {
+
                 if (rdbFisica.Checked)
                 {
-                    ExibirMensagem("O campo CPF é obrigatório");
+                    ExibirMensagem("O Campo CPF é Obrigatório");
                 }
                 else
                 {
-                    ExibirMensagem("O campo CNPJ é obrigatório");
+                    ExibirMensagem("O Campo CNPJ é Obrigatório");
                 }
+
 
                 txtCpfCnpj.Focus();
                 return false;
             }
-            
+            else
+            {
+                if (rdbFisica.Checked)
+                {
+                    //verificar se o CPF é válido
+                }
+                else
+                {
+                    //Verificar se o CNPJ é válido
+                }
+            }
+
 
             if (string.IsNullOrWhiteSpace(txtCep.Text))
             {
-                ExibirMensagem("O Campo cep é Obrigatório");
+                ExibirMensagem("O Campo CEP é Obrigatório");
                 txtCep.Focus();
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtEndereco.Text))
             {
-                ExibirMensagem("O Campo endereco é Obrigatório");
+                ExibirMensagem("O Campo Endereço é Obrigatório");
                 txtEndereco.Focus();
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtNumero.Text))
             {
-                ExibirMensagem("O Campo numero é Obrigatório");
+                ExibirMensagem("O Campo Número é Obrigatório");
                 txtNumero.Focus();
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtBairro.Text))
             {
-                ExibirMensagem("O Campo bairro é Obrigatório");
+                ExibirMensagem("O Campo Bairro é Obrigatório");
                 txtBairro.Focus();
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(txtCidade.Text))
             {
-                ExibirMensagem("O Campo cidade é Obrigatório");
+                ExibirMensagem("O Campo Cidade é Obrigatório");
                 txtCidade.Focus();
                 return false;
             }
+
             if (string.IsNullOrWhiteSpace(cbxEstado.Text))
             {
-                ExibirMensagem("O Campo estado é Obrigatório");
+                ExibirMensagem("O Campo Estado é Obrigatório");
                 cbxEstado.Focus();
                 return false;
             }
 
 
             return true;
-
         }
 
         private void rdbJuridica_CheckedChanged(object sender, EventArgs e)
@@ -156,13 +181,6 @@ namespace SistemaAtendimento
         {
             lblCpfCnpj.Text = "CPF";
         }
-
-        private void grbDadosCliente_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-
 
         private void HabilitarCampos()
         {
@@ -185,6 +203,7 @@ namespace SistemaAtendimento
             btnSalvar.Enabled = true;
             btnCancelar.Enabled = true;
         }
+
         private void LimparCampos()
         {
             txtCodigo.Clear();
@@ -208,7 +227,6 @@ namespace SistemaAtendimento
         public void DesabilitarCampos()
         {
             LimparCampos();
-
             txtNome.ReadOnly = true;
             txtEmail.ReadOnly = true;
             txtTelefone.ReadOnly = true;
@@ -222,7 +240,7 @@ namespace SistemaAtendimento
             txtCidade.ReadOnly = true;
             txtBairro.ReadOnly = true;
             cbxEstado.Enabled = false;
-            pnlSituacao.Enabled = false;
+            pnlSituacao.Enabled = true;
 
             btnNovo.Enabled = true;
             btnSalvar.Enabled = false;
@@ -243,33 +261,35 @@ namespace SistemaAtendimento
 
         private void dgvClientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // MessageBox.Show("Funcionou");
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow linhaSelicionada = dgvClientes.Rows[e.RowIndex];
+                DataGridViewRow linhaSelecionada = dgvClientes.Rows[e.RowIndex];
 
-                txtCodigo.Text = linhaSelicionada.Cells["Id"].Value.ToString();
-                txtNome.Text = linhaSelicionada.Cells["Nome"].Value.ToString();
-                txtEmail.Text = linhaSelicionada.Cells["Email"].Value.ToString();
-                txtCpfCnpj.Text = linhaSelicionada.Cells["Cpf_Cnpj"].Value.ToString();
-                txtTelefone.Text = linhaSelicionada.Cells["Telefone"].Value.ToString();
-                txtCelular.Text = linhaSelicionada.Cells["Celular"].Value.ToString();
-                txtCep.Text = linhaSelicionada.Cells["Cep"].Value.ToString();
-                txtEndereco.Text = linhaSelicionada.Cells["Endereco"].Value.ToString();
-                txtNumero.Text = linhaSelicionada.Cells["Numero"].Value.ToString();
-                txtComplemento.Text = linhaSelicionada.Cells["Complemento"].Value.ToString();
-                txtBairro.Text = linhaSelicionada.Cells["Bairro"].Value.ToString();
-                txtCidade.Text = linhaSelicionada.Cells["Cidade"].Value.ToString();
-                cbxEstado.Text = linhaSelicionada.Cells["Estado"].Value.ToString();
-                rdbJuridica.Checked = linhaSelicionada.Cells["TipoPessoa"].Value.ToString() == "J";
-                rdbFisica.Checked = linhaSelicionada.Cells["TipoPessoa"].Value.ToString() == "F";
-                rdbAtivo.Checked = Convert.ToBoolean(linhaSelicionada.Cells["Ativo"].Value);
-                rdbInativo.Checked = !Convert.ToBoolean(linhaSelicionada.Cells["Ativo"].Value);
+                txtCodigo.Text = linhaSelecionada.Cells["Id"].Value.ToString();
+                txtNome.Text = linhaSelecionada.Cells["Nome"].Value.ToString();
+                txtEmail.Text = linhaSelecionada.Cells["Email"].Value.ToString();
+                txtCpfCnpj.Text = linhaSelecionada.Cells["Cpf_Cnpj"].Value.ToString();
+                txtTelefone.Text = linhaSelecionada.Cells["Telefone"].Value.ToString();
+                txtCelular.Text = linhaSelecionada.Cells["Celular"].Value.ToString();
+                txtCep.Text = linhaSelecionada.Cells["Cep"].Value.ToString();
+                txtEndereco.Text = linhaSelecionada.Cells["Endereco"].Value.ToString();
+                txtNumero.Text = linhaSelecionada.Cells["Numero"].Value.ToString();
+                txtComplemento.Text = linhaSelecionada.Cells["Complemento"].Value.ToString();
+                txtBairro.Text = linhaSelecionada.Cells["Bairro"].Value.ToString();
+                txtCidade.Text = linhaSelecionada.Cells["Cidade"].Value.ToString();
+                cbxEstado.Text = linhaSelecionada.Cells["Estado"].Value.ToString();
+
+                rdbFisica.Checked = linhaSelecionada.Cells["TipoPessoa"].Value.ToString() == "F";
+                rdbJuridica.Checked = linhaSelecionada.Cells["TipoPessoa"].Value.ToString() == "J";
+
+                rdbAtivo.Checked = Convert.ToBoolean(linhaSelecionada.Cells["Ativo"].Value);
+                rdbInativo.Checked = !Convert.ToBoolean(linhaSelecionada.Cells["Ativo"].Value);
 
                 btnEditar.Enabled = true;
                 btnNovo.Enabled = false;
                 btnCancelar.Enabled = true;
                 btnExcluir.Enabled = true;
+
             }
         }
 
@@ -281,17 +301,22 @@ namespace SistemaAtendimento
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtCidade.Text))
+            if (string.IsNullOrEmpty(txtCodigo.Text))
             {
-                ExibirMensagem("Selecione um cliente");
+                ExibirMensagem("Selecione um Cliente");
                 return;
             }
-            DialogResult resultado = MessageBox.Show("Deseja Excluir este Cliente", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            DialogResult resultado = MessageBox.Show("Deseja Excluir este Cliente?",
+                "Confirmação",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
             {
                 int id = Convert.ToInt32(txtCodigo.Text);
-                _clientesController.Excluir(id);
+                _clienteController.Excluir(id);
+
             }
         }
 
@@ -299,8 +324,8 @@ namespace SistemaAtendimento
         {
             try
             {
-                cep = cep.Replace("-", "").Trim();
 
+                cep = cep.Replace("-", "").Trim();
 
                 using (HttpClient client = new HttpClient())
                 {
@@ -309,16 +334,14 @@ namespace SistemaAtendimento
                     var response = await client.GetAsync(url);
 
                     if (response.IsSuccessStatusCode)
-
-
                     {
                         string json = await response.Content.ReadAsStringAsync();
 
                         dynamic? dadosEndereco = JsonConvert.DeserializeObject(json);
 
-                        if (dadosEndereco?["erro"] != null && (bool)dadosEndereco?["erro"])
+                        if (dadosEndereco?.ContainsKey("erro") && (bool)dadosEndereco?.erro)
                         {
-                            ExibirMensagem("CEP não encontrado!");
+                            ExibirMensagem("CEP não encontrado. Verifique e tente novamente.");
                             return;
                         }
 
@@ -333,7 +356,7 @@ namespace SistemaAtendimento
             }
             catch (Exception ex)
             {
-                ExibirMensagem($"Erro ao buscar o Endereço:{ex.Message}");
+                ExibirMensagem($"Erro ao buscar o Endereço: {ex.Message}");
             }
         }
 
@@ -342,16 +365,15 @@ namespace SistemaAtendimento
             if (!string.IsNullOrEmpty(txtCep.Text))
             {
                 await BuscarEnderecoPorCep(txtCep.Text);
-
-
             }
-
         }
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             string termo = txtPesquisar.Text.Trim();
-            _clientesController.ListarClientes(termo);
+            _clienteController.ListarClientes(termo);
         }
+
+        
     }
 }

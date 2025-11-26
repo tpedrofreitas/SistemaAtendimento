@@ -96,7 +96,7 @@
             btnCancelar.ImageAlign = ContentAlignment.MiddleLeft;
             btnCancelar.ImageIndex = 0;
             btnCancelar.ImageList = imlIcones;
-            btnCancelar.Location = new Point(336, 208);
+            btnCancelar.Location = new Point(290, 211);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(88, 33);
             btnCancelar.TabIndex = 27;
@@ -125,13 +125,14 @@
             btnExcluir.ImageAlign = ContentAlignment.MiddleLeft;
             btnExcluir.ImageIndex = 2;
             btnExcluir.ImageList = imlIcones;
-            btnExcluir.Location = new Point(224, 208);
+            btnExcluir.Location = new Point(197, 211);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(75, 33);
             btnExcluir.TabIndex = 26;
             btnExcluir.Text = "Excluir";
             btnExcluir.TextAlign = ContentAlignment.MiddleRight;
             btnExcluir.UseVisualStyleBackColor = true;
+            btnExcluir.Click += btnExcluir_Click;
             // 
             // btnSalvar
             // 
@@ -140,7 +141,7 @@
             btnSalvar.ImageAlign = ContentAlignment.MiddleLeft;
             btnSalvar.ImageIndex = 5;
             btnSalvar.ImageList = imlIcones;
-            btnSalvar.Location = new Point(120, 208);
+            btnSalvar.Location = new Point(106, 211);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(75, 33);
             btnSalvar.TabIndex = 25;
@@ -180,7 +181,7 @@
             btnNovo.ImageAlign = ContentAlignment.MiddleLeft;
             btnNovo.ImageIndex = 3;
             btnNovo.ImageList = imlIcones;
-            btnNovo.Location = new Point(24, 208);
+            btnNovo.Location = new Point(15, 211);
             btnNovo.Name = "btnNovo";
             btnNovo.Size = new Size(75, 33);
             btnNovo.TabIndex = 21;
@@ -371,11 +372,11 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(478, 15);
+            label9.Location = new Point(485, 15);
             label9.Name = "label9";
-            label9.Size = new Size(170, 32);
+            label9.Size = new Size(163, 32);
             label9.TabIndex = 24;
-            label9.Text = "Atendimento: ";
+            label9.Text = "Atendimento:";
             // 
             // txtCodigoAtendimento
             // 
@@ -406,7 +407,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(802, 619);
+            ClientSize = new Size(774, 619);
             Controls.Add(btnPesquisarAtendimento);
             Controls.Add(txtCodigoAtendimento);
             Controls.Add(label9);

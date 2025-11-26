@@ -30,17 +30,12 @@ namespace SistemaAtendimento
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmCadastroCliente frmCadastroCliente = new FrmCadastroCliente();
-            frmCadastroCliente.Show();
+            frmCadastroCliente.ShowDialog();
         }
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,26 +44,8 @@ namespace SistemaAtendimento
             frmCadastroUsuario.Show();
         }
 
-        private void etapasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCadastroEtapa frmCadastroEtapa = new FrmCadastroEtapa();
-            frmCadastroEtapa.Show();
-        }
-
-        private void statusAtendimentosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmCadastroSituacaoAtendimento frmCadastroSitucaoAtendimento = new FrmCadastroSituacaoAtendimento();
-            frmCadastroSitucaoAtendimento.Show();
-        }
-
-        private void FrmTelaPrincipal_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void novoAtendimentoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             FrmAtendimento frmAtendimento = new FrmAtendimento();
             frmAtendimento.Show();
         }
@@ -78,6 +55,17 @@ namespace SistemaAtendimento
             FrmConsultaAtendimento frmConsultaAtendimento = new FrmConsultaAtendimento();
             frmConsultaAtendimento.Show();
         }
+
+        private void etapasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCadastroEtapa frmCadastroEtapa = new FrmCadastroEtapa();
+            frmCadastroEtapa.Show();
+        }
+
+        private void situacaoAtendimentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCadastroSituacaoAtendimento frmCadastroSituacaoAtendimento = new FrmCadastroSituacaoAtendimento();
+            frmCadastroSituacaoAtendimento.Show();
+        }
     }
 }
-

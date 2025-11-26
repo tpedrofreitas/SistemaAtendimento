@@ -17,17 +17,20 @@ namespace SistemaAtendimento.Controller
             _frmConsultaAtendimento = view;
             _atendimentoRepository = new AtendimentoRepository();
         }
+
         public void ListarAtendimento(string termo = "", string condicao = "")
         {
             try
             {
                 var listaAtendimento = _atendimentoRepository.Listar(termo, condicao);
-                _frmConsultaAtendimento.ExibirAtendimento(listaAtendimento);
+                _frmConsultaAtendimento.ExibirAtendimentos(listaAtendimento);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                _frmConsultaAtendimento.ExibirMensagem($"Erro ao Listar os atendimentos: {ex.Message}");
+                _frmConsultaAtendimento.ExibirMensagem($"Erro ao listar os atendimentos: {ex.Message}");
             }
         }
+
     }
 }
