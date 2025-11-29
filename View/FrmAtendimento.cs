@@ -249,5 +249,15 @@ namespace SistemaAtendimento.View
 
             }
         }
+
+        private void cbxEtapaAtendimento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCodigoCliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -269,6 +269,7 @@
             txtCodigoCliente.ReadOnly = true;
             txtCodigoCliente.Size = new Size(83, 23);
             txtCodigoCliente.TabIndex = 1;
+            txtCodigoCliente.TextChanged += txtCodigoCliente_TextChanged;
             // 
             // label1
             // 
@@ -319,6 +320,7 @@
             cbxEtapaAtendimento.Name = "cbxEtapaAtendimento";
             cbxEtapaAtendimento.Size = new Size(285, 23);
             cbxEtapaAtendimento.TabIndex = 13;
+            cbxEtapaAtendimento.SelectedIndexChanged += cbxEtapaAtendimento_SelectedIndexChanged;
             // 
             // btnAdicionarEtapa
             // 
