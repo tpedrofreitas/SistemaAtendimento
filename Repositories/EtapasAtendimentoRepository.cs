@@ -17,7 +17,7 @@ namespace SistemaAtendimento.Repositories
 
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"SELECT * FROM etapas_atendimento WHERE atendimento_id = @atendimentoID";
+                string sql = @"SELECT * FROM etapa_atendimentos WHERE atendimento_id = @atendimentoID";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
@@ -49,7 +49,7 @@ namespace SistemaAtendimento.Repositories
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = "INSERT INTO etapas_atendimentos( atendimento_id, etapa_id, usuario_id, data_cadastro,  observacao) VALUES (@atendimentoId, @etapaId, @usuarioId, @dataCadastro, @observacao)";
+                string sql = "INSERT INTO etapa_atendimentos( atendimento_id, etapa_id, usuario_id, data_cadastro,  observacao) VALUES (@atendimentoId, @etapaId, @usuarioId, @dataCadastro, @observacao)";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
@@ -68,7 +68,7 @@ namespace SistemaAtendimento.Repositories
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"DELETE FROM etapas_atendimentos WHERE id = @id";
+                string sql = @"DELETE FROM etapa_atendimentos WHERE id = @id";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {

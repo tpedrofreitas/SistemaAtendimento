@@ -142,6 +142,7 @@
             MainMenuStrip = mnuTelaPrincipal;
             Name = "FrmTelaPrincipal";
             Text = "Sistema de Atendimento";
+            Load += FrmTelaPrincipal_Load;
             mnuTelaPrincipal.ResumeLayout(false);
             mnuTelaPrincipal.PerformLayout();
             ResumeLayout(false);

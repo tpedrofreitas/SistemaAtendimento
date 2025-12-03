@@ -67,5 +67,10 @@ namespace SistemaAtendimento
             FrmCadastroSituacaoAtendimento frmCadastroSituacaoAtendimento = new FrmCadastroSituacaoAtendimento();
             frmCadastroSituacaoAtendimento.Show();
         }
+
+        private void FrmTelaPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
