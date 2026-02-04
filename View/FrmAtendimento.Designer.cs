@@ -370,6 +370,7 @@
             dgvEtapasAtendimento.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEtapasAtendimento.Size = new Size(401, 234);
             dgvEtapasAtendimento.TabIndex = 0;
+            dgvEtapasAtendimento.CellContentClick += dgvEtapasAtendimento_CellContentClick;
             // 
             // label9
             // 

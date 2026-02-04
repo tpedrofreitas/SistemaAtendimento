@@ -311,7 +311,7 @@ namespace SistemaAtendimento.View
 
         private void btnExcluirEtapa_Click(object sender, EventArgs e)
         {
-            if(dgvEtapasAtendimento.SelectedRows.Count == 0)
+            if (dgvEtapasAtendimento.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Selecione uma etapa para excluir");
                 return;
@@ -320,11 +320,16 @@ namespace SistemaAtendimento.View
 
             var confirmar = MessageBox.Show("Deseja Excluir esta Etapa?", "Confirmação", MessageBoxButtons.YesNo);
 
-            if(confirmar == DialogResult.Yes)
+            if (confirmar == DialogResult.Yes)
             {
                 _etapasAtendimentoController.Excluir(id);
                 CarregarEtapasAtendimento();
             }
+        }
+
+        private void dgvEtapasAtendimento_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

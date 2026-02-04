@@ -72,5 +72,10 @@ namespace SistemaAtendimento
         {
 
         }
+
+        private void FrmTelaPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); 
+        }
     }
 }

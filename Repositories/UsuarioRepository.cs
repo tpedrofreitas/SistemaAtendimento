@@ -99,5 +99,40 @@ namespace SistemaAtendimento.Repositories
                 }
             }
         }
+
+        public Usuarios Login(string email, string senha)
+        {
+            using (var conexao = ConexaoDB.GetConexao())
+            {
+                string sql = @"SELECT * FROM usuarios  
+                              WHERE email = @email AND 
+                               senha = @senha";
+
+                using (var comando = new SqlCommand(sql,conexao))
+                {
+                    comando.Parameters.AddWithValue("@email", email);
+                    comando.Parameters.AddWithValue("@senha", senha);
+
+                    conexao.Open();
+                    using (var linha = comando.ExecuteReader())
+                    {
+                        if (linha.Read())
+                        {
+                            return new Usuarios
+                            {
+                                Id = Convert.ToInt32(linha["id"]),
+                                Nome = linha["nome"].ToString(),
+                                Email = linha["email"].ToString(),
+                                Perfil = linha["perfil"].ToString(),
+                            };
+                        }
+                    }
+                       
+
+
+                }
+            }
+                return null;
+        }
     }
 }
