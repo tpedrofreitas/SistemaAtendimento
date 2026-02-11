@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SistemaAtendimento.Model;
 using SistemaAtendimento.Repositories;
+using SistemaAtendimento.Service;
 
 namespace SistemaAtendimento.Controller
 {
@@ -93,5 +95,30 @@ namespace SistemaAtendimento.Controller
             }
 
         }
+        public  void GerarRelatorioPDF()
+        {
+
+            try
+            {
+                var ListaClientes = _clienteRepository.Listar();
+
+                var relatorioCliente = new RelatorioCliente();
+
+                string arquivo = relatorioCliente.GerarListaClientes(ListaClientes);
+
+                var psi = new ProcessStartInfo(arquivo)
+                {
+                    UseShellExecute = true,
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                /// erro ao gerar o relatório
+            }
+                       
+        }
     }
 }
+
+
