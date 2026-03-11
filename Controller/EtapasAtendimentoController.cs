@@ -14,38 +14,40 @@ namespace SistemaAtendimento.Controller
         private EtapasAtendimentoRepository _etapasAtendimentoRepository;
         private FrmAtendimento _frmAtendimento;
 
-        public EtapasAtendimentoController(FrmAtendimento view)
-        {
+        public EtapasAtendimentoController(FrmAtendimento view) 
+        { 
             _frmAtendimento = view;
-            _etapasAtendimentoRepository = new EtapasAtendimentoRepository();
+            _etapasAtendimentoRepository = new EtapasAtendimentoRepository();            
         }
 
-        public List<EtapasAtendimentos> Listar(int atendimentoId)
-        {
+        public List<EtapasAtendimentos> Listar(int atendimentoId) 
+        { 
             return _etapasAtendimentoRepository.Listar(atendimentoId);
         }
-        public void Salvar(EtapasAtendimentos etapasAtendimentos)
+
+        public void Salvar(EtapasAtendimentos etapaAtendimento)
         {
             try
             {
-                _etapasAtendimentoRepository.Inserir(etapasAtendimentos);
-                _frmAtendimento.ExibirMensagem("Atendimento Etapa Salvo com Sucesso ");
+                _etapasAtendimentoRepository.Inserir(etapaAtendimento);
+                _frmAtendimento.ExibirMensagem("Atendimento Etapa Salvo com Sucesso!");
             }
             catch (Exception ex)
             {
-                _frmAtendimento.ExibirMensagem($"Erro ao Cadastrar o Atendimento Etapa:{ex.Message}");
+                _frmAtendimento.ExibirMensagem($"Erro ao Cadastrar o Atendimento Etapa: {ex.Message}");
             }
         }
+
         public void Excluir(int id)
         {
             try
             {
                 _etapasAtendimentoRepository.Excluir(id);
-                _frmAtendimento.ExibirMensagem("Atendimento Etapa Excluído com Sucesso ");
+                _frmAtendimento.ExibirMensagem("Atendimento Etapa Excluído com Sucesso!");
             }
             catch (Exception ex)
             {
-                _frmAtendimento.ExibirMensagem($"Erro ao Excluit o Atendimento Etapa:{ex.Message}");
+                _frmAtendimento.ExibirMensagem($"Erro ao Excluir o Atendimento Etapa: {ex.Message}");
             }
         }
     }

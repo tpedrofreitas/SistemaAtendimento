@@ -90,9 +90,12 @@ namespace SistemaAtendimento.View
                     //Preencher campos
                     PreencherCampos(atendimento);
 
+
                     grbEtapasAtendimento.Enabled = true;
 
                     CarregarEtapasAtendimento();
+
+
                 }
             }
         }
@@ -203,6 +206,8 @@ namespace SistemaAtendimento.View
 
                 btnExcluir.Enabled = true;
 
+                grbEtapasAtendimento.Enabled = true;
+
                 CarregarEtapasAtendimento();
 
             }
@@ -271,23 +276,25 @@ namespace SistemaAtendimento.View
 
         }
 
-
-
-        private void btnAdicionarEtapa_Click_1(object sender, EventArgs e)
+        private void btnAdicionarEtapa_Click(object sender, EventArgs e)
         {
             if (!_atendimentoId.HasValue)
             {
-                MessageBox.Show("Salve o Atendimento antes de adicionar etapas");
+                MessageBox.Show("Salve o atendimento antes de adiconar etapas");
                 return;
             }
+
             if (cbxEtapaAtendimento.SelectedValue == null)
             {
                 MessageBox.Show("Selecione uma Etapa");
+                cbxEtapaAtendimento.Focus();
                 return;
             }
+
+
             if (string.IsNullOrWhiteSpace(txtEtapaObservacao.Text))
             {
-                ExibirMensagem("Digite uma observação de Atendimento");
+                ExibirMensagem("Digite uma observação do Atendimento");
                 txtEtapaObservacao.Focus();
                 return;
             }
@@ -297,39 +304,37 @@ namespace SistemaAtendimento.View
                 AtendimentoId = _atendimentoId.Value,
                 EtapaId = Convert.ToInt32(cbxEtapaAtendimento.SelectedValue),
                 UsuarioId = 1,
-                DataCadastro = DateTime.Now,
+                DataCadastro = dtpAberturaAtendimento.Value,
                 Observacao = txtEtapaObservacao.Text
-
             };
+
             _etapasAtendimentoController.Salvar(etapaAtendimento);
 
             cbxEtapaAtendimento.SelectedIndex = -1;
             txtEtapaObservacao.Clear();
-
             CarregarEtapasAtendimento();
+
         }
 
         private void btnExcluirEtapa_Click(object sender, EventArgs e)
         {
-            if (dgvEtapasAtendimento.SelectedRows.Count == 0)
+            if (dgvEtapasAtendimento.SelectedRows.Count == 0) 
             {
-                MessageBox.Show("Selecione uma etapa para excluir");
+                MessageBox.Show("Selecione um etapa para excluir");
                 return;
             }
+
             int id = Convert.ToInt32(dgvEtapasAtendimento.SelectedRows[0].Cells["Id"].Value);
 
-            var confirmar = MessageBox.Show("Deseja Excluir esta Etapa?", "Confirmação", MessageBoxButtons.YesNo);
+            var confirmar = MessageBox.Show("Deseja Excluir esta Etapa?", 
+                                            "Confirmação", 
+                                            MessageBoxButtons.YesNo);
 
-            if (confirmar == DialogResult.Yes)
-            {
+            if (confirmar == DialogResult.Yes) 
+            { 
                 _etapasAtendimentoController.Excluir(id);
                 CarregarEtapasAtendimento();
             }
-        }
-
-        private void dgvEtapasAtendimento_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

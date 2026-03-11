@@ -1,11 +1,13 @@
-﻿using System;
+﻿using SistemaAtendimento.Model;
+using SistemaAtendimento.Repositories;
+using SistemaAtendimento.Services;
+using SistemaAtendimento.View;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SistemaAtendimento.Model;
-using SistemaAtendimento.Repositories;
-using SistemaAtendimento.View;
 
 namespace SistemaAtendimento.Controller
 {
@@ -78,14 +80,38 @@ namespace SistemaAtendimento.Controller
                 _frmCadastroUsuario.ExibirMensagem($"Erro ao excluir Etapa: {ex.Message}");
             }
         }
-        public Usuarios Autenticar(string email,string senha)
+
+
+        public Usuarios Autenticar(string email, string senha)
         {
-            if(string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
-            {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(senha))
                 return null;
 
-            }
             return _usuarioRepository.Login(email, senha);
+        }
+        public void GerarRelatorioPDF()
+        {
+            try
+            {
+                var listaUsuario = _usuarioRepository.Listar();
+
+                var relatorioUsuario = new RelatorioUsuario();
+
+                string arquivo = relatorioUsuario.GerarListaUsuario(listaUsuario);
+
+                var psi = new ProcessStartInfo(arquivo)
+                {
+                    UseShellExecute = true,
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                ///Erro ao gerar o relatório
+            }
+
+
+
         }
     }
 }

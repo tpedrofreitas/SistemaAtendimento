@@ -333,7 +333,7 @@
             btnAdicionarEtapa.Text = "Adicionar Etapa";
             btnAdicionarEtapa.TextAlign = ContentAlignment.MiddleRight;
             btnAdicionarEtapa.UseVisualStyleBackColor = true;
-            btnAdicionarEtapa.Click += btnAdicionarEtapa_Click_1;
+            btnAdicionarEtapa.Click += btnAdicionarEtapa_Click;
             // 
             // label8
             // 
@@ -370,7 +370,6 @@
             dgvEtapasAtendimento.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEtapasAtendimento.Size = new Size(401, 234);
             dgvEtapasAtendimento.TabIndex = 0;
-            dgvEtapasAtendimento.CellContentClick += dgvEtapasAtendimento_CellContentClick;
             // 
             // label9
             // 

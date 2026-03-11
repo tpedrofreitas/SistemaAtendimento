@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SistemaAtendimento.Model;
 using SistemaAtendimento.Repositories;
-using SistemaAtendimento.Service;
+using SistemaAtendimento.Services;
 
 namespace SistemaAtendimento.Controller
 {
@@ -95,16 +95,16 @@ namespace SistemaAtendimento.Controller
             }
 
         }
-        public  void GerarRelatorioPDF()
-        {
 
+        public void GerarRelatorioPDF()
+        {
             try
             {
-                var ListaClientes = _clienteRepository.Listar();
+                var listaClientes = _clienteRepository.Listar();
 
-                var relatorioCliente = new RelatorioCliente();
+                var relatorioClientes = new RelatorioClientes();
 
-                string arquivo = relatorioCliente.GerarListaClientes(ListaClientes);
+                string arquivo = relatorioClientes.GerarListaClientes(listaClientes);
 
                 var psi = new ProcessStartInfo(arquivo)
                 {
@@ -112,13 +112,13 @@ namespace SistemaAtendimento.Controller
                 };
                 Process.Start(psi);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                /// erro ao gerar o relatório
-            }
-                       
+                ///Erro ao gerar o relatório
+            }      
+
+
+
         }
     }
 }
-
-

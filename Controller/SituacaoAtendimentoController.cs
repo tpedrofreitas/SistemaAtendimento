@@ -1,11 +1,13 @@
-﻿using System;
+﻿using SistemaAtendimento.Model;
+using SistemaAtendimento.Repositories;
+using SistemaAtendimento.Services;
+using SistemaAtendimento.View;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SistemaAtendimento.Model;
-using SistemaAtendimento.Repositories;
-using SistemaAtendimento.View;
 
 namespace SistemaAtendimento.Controller
 {
@@ -78,5 +80,30 @@ namespace SistemaAtendimento.Controller
                 _frmCadastroSituacaoAtendimento.ExibirMensagem($"Erro ao Excluir Situação Atendimento: {ex.Message}");
             }
         }
+        public void GerarRelatorioPDF()
+        {
+            try
+            {
+                var listaSituacaoAtendimento = _situacaoAtendimentoRepository.Listar();
+
+                var relatorioSituacaoAtendimento = new RelatorioSituacaoAtendimento();
+
+                string arquivo = relatorioSituacaoAtendimento.GerarListaSituacaoAtendimento(listaSituacaoAtendimento);
+
+                var psi = new ProcessStartInfo(arquivo)
+                {
+                    UseShellExecute = true,
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                ///Erro ao gerar o relatório
+            }
+
+
+
+        }
     }
+
 }

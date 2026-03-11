@@ -51,6 +51,7 @@ namespace SistemaAtendimento.Repositories
             return usuarios;
         }
 
+
         public void Inserir(Usuarios usuarios)
         {
             using (var conexao = ConexaoDB.GetConexao())
@@ -104,35 +105,30 @@ namespace SistemaAtendimento.Repositories
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"SELECT * FROM usuarios  
-                              WHERE email = @email AND 
-                               senha = @senha";
+                string sql = @"SELECT *
+                               FROM usuarios
+                               WHERE email = @email AND senha = @senha";
 
-                using (var comando = new SqlCommand(sql,conexao))
+                SqlCommand cmd = new SqlCommand(sql, conexao);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@senha", senha);
+
+                conexao.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
                 {
-                    comando.Parameters.AddWithValue("@email", email);
-                    comando.Parameters.AddWithValue("@senha", senha);
-
-                    conexao.Open();
-                    using (var linha = comando.ExecuteReader())
+                    return new Usuarios
                     {
-                        if (linha.Read())
-                        {
-                            return new Usuarios
-                            {
-                                Id = Convert.ToInt32(linha["id"]),
-                                Nome = linha["nome"].ToString(),
-                                Email = linha["email"].ToString(),
-                                Perfil = linha["perfil"].ToString(),
-                            };
-                        }
-                    }
-                       
-
-
+                        Id = Convert.ToInt32(dr["Id"]),
+                        Nome = dr["nome"].ToString(),
+                        Email = dr["email"].ToString(),
+                        Perfil = dr["perfil"].ToString()
+                    };
                 }
-            }
+
                 return null;
+            }
         }
     }
 }

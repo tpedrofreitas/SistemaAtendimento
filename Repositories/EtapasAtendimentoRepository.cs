@@ -11,27 +11,26 @@ namespace SistemaAtendimento.Repositories
 {
     public class EtapasAtendimentoRepository
     {
+
         public List<EtapasAtendimentos> Listar(int atendimentoId)
         {
-            var  etapasAtendimento = new List<EtapasAtendimentos>();
-
+            var etapasAtendimento = new List<EtapasAtendimentos>();
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = @"SELECT * FROM etapa_atendimentos WHERE atendimento_id = @atendimentoID";
+                string sql = @"SELECT * FROM etapa_atendimentos WHERE atendimento_id = @atendimentoId";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
-                    comando.Parameters.AddWithValue("@atendimentoID",atendimentoId);
-
+                    comando.Parameters.AddWithValue("@atendimentoId", atendimentoId);
                     conexao.Open();
 
                     using (var linhas = comando.ExecuteReader())
                     {
-                        while (linhas.Read())
+                        while (linhas.Read()) 
                         {
-                            etapasAtendimento.Add(new EtapasAtendimentos
+                            etapasAtendimento.Add(new EtapasAtendimentos 
                             {
-                                Id = Convert.ToInt32( linhas["id"]),
+                                Id = Convert.ToInt32(linhas["id"]),
                                 AtendimentoId = Convert.ToInt32(linhas["atendimento_id"]),
                                 EtapaId = Convert.ToInt32(linhas["etapa_id"]),
                                 UsuarioId = Convert.ToInt32(linhas["usuario_id"]),
@@ -42,28 +41,33 @@ namespace SistemaAtendimento.Repositories
                     }
                 }
             }
-
             return etapasAtendimento;
         }
-        public void Inserir(EtapasAtendimentos etapasAtendimento)
+
+        public void Inserir(EtapasAtendimentos etapasAtendimentos)
         {
             using (var conexao = ConexaoDB.GetConexao())
             {
-                string sql = "INSERT INTO etapa_atendimentos( atendimento_id, etapa_id, usuario_id, data_cadastro,  observacao) VALUES (@atendimentoId, @etapaId, @usuarioId, @dataCadastro, @observacao)";
+                string sql = @"
+            INSERT INTO etapa_atendimentos 
+                (atendimento_id, etapa_id, usuario_id, data_cadastro, observacao)
+            VALUES 
+                (@atendimentoId, @etapaId, @usuarioId, @dataCadastro, @observacao)";
 
                 using (var comando = new SqlCommand(sql, conexao))
                 {
-                    comando.Parameters.AddWithValue("@atendimentoId", etapasAtendimento.AtendimentoId);
-                    comando.Parameters.AddWithValue("@etapaId", etapasAtendimento.EtapaId);
-                    comando.Parameters.AddWithValue("@usuarioId", etapasAtendimento.UsuarioId);
-                    comando.Parameters.AddWithValue("@dataCadastro", etapasAtendimento.DataCadastro);
-                    comando.Parameters.AddWithValue("@observacao", etapasAtendimento.Observacao);
+                    comando.Parameters.AddWithValue("@atendimentoId", etapasAtendimentos.AtendimentoId);
+                    comando.Parameters.AddWithValue("@etapaId", etapasAtendimentos.EtapaId);
+                    comando.Parameters.AddWithValue("@usuarioId", etapasAtendimentos.UsuarioId);
+                    comando.Parameters.AddWithValue("@dataCadastro", etapasAtendimentos.DataCadastro);
+                    comando.Parameters.AddWithValue("@observacao", etapasAtendimentos.Observacao);
+
                     conexao.Open();
                     comando.ExecuteNonQuery();
                 }
             }
-
         }
+
         public void Excluir(int id)
         {
             using (var conexao = ConexaoDB.GetConexao())

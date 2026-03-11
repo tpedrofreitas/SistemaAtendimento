@@ -28,95 +28,100 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnBemVindo = new Button();
-            lblEmail = new Label();
-            lblSenha = new Label();
+            btnEntrar = new Button();
+            Login = new Label();
+            label2 = new Label();
             txtEmail = new TextBox();
             txtSenha = new TextBox();
-            btnEntrar = new Button();
+            label1 = new Label();
             SuspendLayout();
-            // 
-            // btnBemVindo
-            // 
-            btnBemVindo.Font = new Font("Source Code Pro", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBemVindo.Location = new Point(104, 32);
-            btnBemVindo.Name = "btnBemVindo";
-            btnBemVindo.Size = new Size(152, 40);
-            btnBemVindo.TabIndex = 0;
-            btnBemVindo.Text = "Bem Vindo";
-            btnBemVindo.UseVisualStyleBackColor = true;
-            // 
-            // lblEmail
-            // 
-            lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblEmail.Location = new Point(48, 112);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(57, 21);
-            lblEmail.TabIndex = 1;
-            lblEmail.Text = "E-mail";
-            // 
-            // lblSenha
-            // 
-            lblSenha.AutoSize = true;
-            lblSenha.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblSenha.Location = new Point(48, 152);
-            lblSenha.Name = "lblSenha";
-            lblSenha.Size = new Size(53, 21);
-            lblSenha.TabIndex = 2;
-            lblSenha.Text = "Senha";
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(104, 112);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(152, 23);
-            txtEmail.TabIndex = 3;
-            // 
-            // txtSenha
-            // 
-            txtSenha.Location = new Point(104, 152);
-            txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(152, 23);
-            txtSenha.TabIndex = 4;
             // 
             // btnEntrar
             // 
-            btnEntrar.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEntrar.Location = new Point(96, 224);
+            btnEntrar.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEntrar.Location = new Point(123, 191);
             btnEntrar.Name = "btnEntrar";
-            btnEntrar.Size = new Size(160, 40);
-            btnEntrar.TabIndex = 5;
+            btnEntrar.Size = new Size(166, 37);
+            btnEntrar.TabIndex = 0;
             btnEntrar.Text = "Entrar";
             btnEntrar.UseVisualStyleBackColor = true;
             btnEntrar.Click += btnEntrar_Click;
+            // 
+            // Login
+            // 
+            Login.AutoSize = true;
+            Login.Font = new Font("Segoe UI", 15.75F);
+            Login.Location = new Point(35, 84);
+            Login.Name = "Login";
+            Login.Size = new Size(71, 30);
+            Login.TabIndex = 1;
+            Login.Text = "E-mail";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 15.75F);
+            label2.Location = new Point(35, 134);
+            label2.Name = "label2";
+            label2.Size = new Size(70, 30);
+            label2.TabIndex = 2;
+            label2.Text = "Senha";
+            // 
+            // txtEmail
+            // 
+            txtEmail.Font = new Font("Segoe UI", 15.75F);
+            txtEmail.Location = new Point(111, 79);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(279, 35);
+            txtEmail.TabIndex = 3;
+            txtEmail.Text = "edson@email.com";
+            // 
+            // txtSenha
+            // 
+            txtSenha.Font = new Font("Segoe UI", 15.75F);
+            txtSenha.Location = new Point(111, 131);
+            txtSenha.Name = "txtSenha";
+            txtSenha.Size = new Size(279, 35);
+            txtSenha.TabIndex = 4;
+            txtSenha.Text = "senha123";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(123, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(196, 47);
+            label1.TabIndex = 5;
+            label1.Text = "Bem vindo";
             // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(337, 298);
-            Controls.Add(btnEntrar);
+            ClientSize = new Size(424, 260);
+            Controls.Add(label1);
             Controls.Add(txtSenha);
             Controls.Add(txtEmail);
-            Controls.Add(lblSenha);
-            Controls.Add(lblEmail);
-            Controls.Add(btnBemVindo);
+            Controls.Add(label2);
+            Controls.Add(Login);
+            Controls.Add(btnEntrar);
             Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FrmLogin";          
+            Text = "Login";
+            Load += FrmLogin_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button btnBemVindo;
-        private Label lblEmail;
-        private Label lblSenha;
+        private Button btnEntrar;
+        private Label Login;
+        private Label label2;
         private TextBox txtEmail;
         private TextBox txtSenha;
-        private Button btnEntrar;
+        private Label label1;
     }
 }
